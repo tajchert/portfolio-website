@@ -3,23 +3,25 @@ import Tag from './Tag.astro';
 
 const featured = [
   {
-    name: 'flux',
-    desc: '[ placeholder ] A focus timer that turns your day into a dot-matrix. Offline-first, no accounts, no nonsense.',
-    tags: ['KOTLIN', 'COMPOSE', 'ROOM'],
-    stats: [{ v: '1.2k', l: '★' }, { v: '12k', l: 'installs' }],
+    name: 'WaitingDots',
+    href: 'https://github.com/tajchert/WaitingDots',
+    desc: 'Android loading animation library built around bouncing dots, shipped as a small reusable UI component.',
+    tags: ['KOTLIN', 'ANDROID', 'OSS'],
+    stats: [{ v: '700+', l: '★' }, { v: 'MIT', l: 'license' }],
   },
   {
-    name: 'ndot-cli',
-    desc: '[ placeholder ] A tiny CLI that renders any text as a Nothing-style dot-matrix glyph board in your terminal.',
-    tags: ['RUST', 'CLI', 'OSS'],
-    stats: [{ v: '840', l: '★' }, { v: 'v0.4', l: 'rev' }],
+    name: 'Nammu',
+    href: 'https://github.com/tajchert/Nammu',
+    desc: 'Android runtime-permission helper for cleaner permission checks, callbacks, monitoring, and Android M-era app flows.',
+    tags: ['KOTLIN', 'ANDROID', 'PERMISSIONS'],
+    stats: [{ v: '700+', l: '★' }, { v: 'MIT', l: 'license' }],
   },
 ];
 
 const secondary = [
-  { name: 'slot.fm', desc: '[ placeholder ] Split-flap web component & demo board.', meta: 'TS · WEB COMPONENT' },
-  { name: 'paper.kt', desc: '[ placeholder ] Compose theme kit, mono & paper.', meta: 'KOTLIN · LIB' },
-  { name: 'tx-log', desc: '[ placeholder ] Tiny self-hosted analytics, no cookies.', meta: 'GO · SELF-HOST' },
+  { name: 'BusWear', href: 'https://github.com/tajchert/BusWear', desc: 'EventBus support for Android Wear and mobile apps with synchronized event buses.', meta: 'JAVA · ANDROID WEAR · OSS' },
+  { name: 'ExceptionWear', href: 'https://github.com/tajchert/ExceptionWear', desc: 'Android Wear exception-handling library for making wearable app failures easier to manage.', meta: 'JAVA · ANDROID WEAR · OSS' },
+  { name: 'RuntimePermissionWorkshop', href: 'https://github.com/tajchert/RuntimePermissionWorkshop', desc: 'Workshop material for teaching Android runtime permissions through practical examples.', meta: 'JAVA · WORKSHOP · ANDROID' },
 ];
 ---
 <section id="work" style="margin-bottom:clamp(56px,8vw,96px);scroll-margin-top:64px;">
@@ -27,12 +29,12 @@ const secondary = [
     <h2 style="font-family:var(--rf-font-mono);font-size:12px;font-weight:700;letter-spacing:.28em;color:#f4f4f2;">02 / PROJECTS</h2>
     <span style="font-family:var(--rf-font-jp);font-size:13px;color:#6c6c6c;white-space:nowrap;flex-shrink:0;">制作物</span>
   </div>
-  <div style="font-size:14px;color:#7a7a72;margin-bottom:24px;">Indie apps &amp; side projects. <span style="color:#ff8a5a;">★</span> = highlighted.</div>
+  <div style="font-size:14px;color:#7a7a72;margin-bottom:24px;">Open-source Android projects and product experiments. <span style="color:#ff8a5a;">★</span> = highlighted.</div>
 
   <!-- featured -->
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;margin-bottom:16px;">
     {featured.map((p) => (
-      <a href="#" class="pf-card-accent" style="border:1px solid #242424;border-radius:14px;background:#0d0d0d;padding:22px;display:block;position:relative;overflow:hidden;">
+      <a href={p.href} target="_blank" rel="noopener" class="pf-card-accent" style="border:1px solid #242424;border-radius:14px;background:#0d0d0d;padding:22px;display:block;position:relative;overflow:hidden;">
         <div style="position:absolute;top:0;right:0;width:120px;height:120px;background-image:radial-gradient(rgba(255,90,30,.18) 1px,transparent 1.4px);background-size:8px 8px;pointer-events:none;"></div>
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
           <span style="font-family:var(--rf-font-mono);font-size:9px;letter-spacing:.2em;color:#0b0b0b;background:#ff4d12;border-radius:999px;padding:4px 10px;font-weight:700;">★ HIGHLIGHT</span>
@@ -55,7 +57,7 @@ const secondary = [
   <!-- secondary -->
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px;">
     {secondary.map((p) => (
-      <a href="#" class="pf-card-soft" style="border:1px solid #1f1f1f;border-radius:12px;background:#0a0a0a;padding:18px;display:block;">
+      <a href={p.href} target="_blank" rel="noopener" class="pf-card-soft" style="border:1px solid #1f1f1f;border-radius:12px;background:#0a0a0a;padding:18px;display:block;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
           <span style="width:8px;height:8px;border-radius:50%;background:#f4f4f2;box-shadow:0 0 7px rgba(255,255,255,.5);"></span>
           <span style="font-family:var(--rf-font-mono);font-size:10px;color:#6c6c6c;">↗</span>

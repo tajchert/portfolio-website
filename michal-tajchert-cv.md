@@ -1,45 +1,61 @@
 # Michał Tajchert
-**Chief Technology Officer** · Warsaw, PL · [@mtajchert](https://github.com/mtajchert)
+**Chief Technology Officer** · Warsaw, PL · [@tajchert](https://github.com/tajchert)
 
-CTO in eCommerce, building the kind of mobile and platform engineering I always wanted to work on. Ex-mobile lead, six years in banking running teams, and before that an Android dev in startups and a software house.
-
-— ~14 years shipping mobile & platform · 40+ apps shipped · 6 teams led
+Technology leader with 13+ years in mobile, platform, q-commerce, eCommerce, fintech, banking, and startup product work. Currently CTO at Lite e-Commerce, leading software, design, and data for Żabka Jush and Delio.
 
 ## Experience
 
-### Chief Technology Officer — eCommerce Co. · 2023 — present · Warsaw
-Own the full technology org — mobile, platform, and infra. Set engineering direction, grow the team, ship the roadmap.
+### Chief Technology Officer — Lite e-Commerce · Feb 2025 — present · Warsaw
+Leading software, design, and data for Żabka Jush and Delio. Responsible for engineering direction, product delivery, and building teams that can ship reliably.
 
-### Mobile Lead — eCommerce Co. · 2020 — 2023
-Led the mobile org across Android & iOS. Architecture, hiring, and delivery for the flagship shopping app.
+### Engineering Manager — MODIVO SA · May 2022 — Dec 2024
+Managed mobile-related teams in a fast-growing eCommerce group. Responsible for MODIVO and eObuwie apps across 19 markets, the Backend-For-Frontend layer supporting them, and cooperation with product, business, and platform teams.
 
-### Mobile Engineering Manager — Bank · 2017 — 2020
-Managed mobile teams on a retail banking app — security, scale, and a regulated release process.
+### Mobile Technology Leader — MODIVO SA · Nov 2021 — May 2022
+Set mobile engineering direction during a fast-growth phase. Focused on architecture, team practices, delivery standards, and scaling mobile development across brands.
 
-### Senior Android Developer — Bank · 2014 — 2017
-Built and shipped core features of the mobile banking app. Six years in the sector all told.
+### Mobile Technology Leader — BlueSoft · Oct 2020 — Oct 2021 · Warsaw
+Led mobile technology and the Android team for Raiffeisen Ukraine. Also supported other mobile initiatives inside BlueSoft, helping teams choose architecture, tooling, and delivery practices.
 
-### Android Developer — Startups & software house · 2011 — 2014
-Where it started — Android apps for clients and early-stage products. Learned to ship.
+### Technology Business Development Manager — DXC Technology · Feb 2019 — Sep 2020 · Warsaw
+Worked across technology ownership, software management, architecture, and client-facing business development.
 
-## Projects
+- Technology Product Owner / Software Manager / Architect for BLIK in the United Arab Emirates, working with a senior mobile team under tight delivery constraints.
+- Business Development Manager for the IKO project at PKO BP, staying close to one of the strongest mobile banking products in the region.
+- Client-facing technology partner for offers, discovery, and stack recommendations.
 
-- **flux** ★ — A focus timer that turns your day into a dot-matrix. Offline-first, no accounts. _Kotlin · Compose · Room_
-- **ndot-cli** ★ — A tiny CLI that renders any text as a Nothing-style dot-matrix glyph board in your terminal. _Rust · CLI · OSS_
-- **slot.fm** — Split-flap web component & demo board. _TS · Web Component_
-- **paper.kt** — Compose theme kit, mono & paper. _Kotlin · Lib_
-- **tx-log** — Tiny self-hosted analytics, no cookies. _Go · Self-host_
+### Android Team Lead @ Raiffeisen — BlueSoft · Jul 2017 — Jan 2019 · Warsaw
+Led a six-person Android team building a new banking application on a modern mobile stack. Supported the previous Mobilny Portfel app while preparing the new version and coordinating the merge path with the BNP mobile team.
 
-## Talks
+### Startups — Brand24, Yawn, Icelytics, 12Hours · Jun 2015 — Jun 2017 · Warsaw / Toronto
+Built and led early-stage product work across mobile apps, analytics, and consumer products.
 
-- Building calm mobile platforms — Mobile Warsaw · keynote (2026)
-- Scaling Android teams in fintech — DroidCon · talk (2025)
-- From IC to CTO: what changed — Code Europe · panel (2024)
-- Offline-first apps that feel instant — GDG Warsaw · meetup (2023)
+- **Brand24** — Team lead and Android developer for a new Brand24 mobile app built from scratch.
+- **Yawn** — CEO; built the team, managed delivery, shaped product ideas, and selected the technology stack.
+- **Icelytics** — CEO; built a mobile analytics product focused on network performance, cache behavior, and cost optimization.
+- **12Hours.io** — CEO; led early product and technical direction.
+
+### Software Engineer — Polidea · Jul 2014 — Apr 2015 · Warsaw
+Professional software engineering in a mobile-focused software house, building Android products for clients.
+
+### Android Developer — BrandCare · Jul 2013 — Oct 2013 · Warsaw
+Early commercial Android development work, including Banamo, a privacy-focused safer community app.
+
+## Focus Areas
+
+Engineering leadership · Mobile platforms · Android · Kotlin · eCommerce · Fintech · Banking · Backend-For-Frontend · Software architecture · Team leadership · Product delivery · LLMs
+
+## Selected Open Source
+
+- **WaitingDots** — Android loading-animation library built around bouncing dots. Kotlin · Android · MIT · 700+ GitHub stars.
+- **Nammu** — Android runtime-permission helper for permission checks, callbacks, and monitoring. Kotlin · Android · MIT · 700+ GitHub stars.
+- **BusWear** — EventBus support for Android Wear and mobile apps. Java · Android Wear · Apache-2.0.
+- **ExceptionWear** — Android Wear exception-handling library.
+- **RuntimePermissionWorkshop** — Practical workshop material for Android runtime permissions.
 
 ## Connect
 
-- LinkedIn: https://linkedin.com/in/mtajchert
-- Twitter / X: https://twitter.com/mtajchert
-- GitHub: https://github.com/mtajchert
+- LinkedIn: https://www.linkedin.com/in/micha%C5%82-tajchert-517b7668/
+- X: https://x.com/Tajchert
+- GitHub: https://github.com/tajchert
 - GitLab: https://gitlab.com/mtajchert
