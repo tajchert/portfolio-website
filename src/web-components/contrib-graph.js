@@ -79,6 +79,7 @@ class ContribGraph extends HTMLElement {
     this._src = 'all';
     this._ready = false;
     this._hasReal = false;
+    this._loading = false;
   }
 
   connectedCallback() {
@@ -90,7 +91,7 @@ class ContribGraph extends HTMLElement {
       // Real-data mode: render cached/skeleton now, fetch live in the background.
       const cached = this._readCache(dataSrc);
       if (cached) { this._days = cached; this._hasReal = true; }
-      else { this._days = buildWindow({}, new Date().toISOString().slice(0, 10), 53); } // empty skeleton
+      else { this._days = buildWindow({}, new Date().toISOString().slice(0, 10), 53); this._loading = true; } // empty skeleton + shimmer
       this._render();
       this._ready = true;
       if (!cached) this._loadReal(dataSrc);
@@ -119,14 +120,16 @@ class ContribGraph extends HTMLElement {
       const todayISO = new Date().toISOString().slice(0, 10);
       this._days = buildWindow(indexByDate(allDays), todayISO, 53);
       this._hasReal = true;
+      this._loading = false;
       this._writeCache(src, this._days);
       this._render();
     } catch (e) {
       // Graceful fallback: only if we have nothing real to show.
+      this._loading = false;
       if (!this._hasReal) {
         this._days = generateDays(parseInt(this.getAttribute('seed') || '20260613', 10));
-        this._render();
       }
+      this._render();
     }
   }
 
@@ -174,15 +177,19 @@ class ContribGraph extends HTMLElement {
 
   _render() {
     const src = this._src;
+    const loading = this._loading;
     const st = this._stats();
+    // skeleton placeholder block (for the numeric readouts while loading)
+    const sk = (w, h) => `<span style="display:inline-block;width:${w}px;height:${h}px;border-radius:4px;background:#1c1c1c;animation:cg-pulse 1.3s ease-in-out infinite;"></span>`;
     const cells = this._days.map((d) => {
+      if (loading) return '<div style="width:11px;height:11px;border-radius:2px;background:#1c1c1c;"></div>';
       const lvl = bucket(dayValue(d, src));
       return `<div style="width:11px;height:11px;border-radius:2px;background:${CONTRIB_BG[lvl]};box-shadow:${CONTRIB_GLOW[lvl]};"></div>`;
     }).join('');
 
     const tile = (val, label, accent) =>
       `<div style="border:1px solid #1f1f1f;border-radius:12px;background:#0a0a0a;padding:16px;">
-         <div style="font-family:'Doto',monospace;font-weight:700;font-size:30px;line-height:1;color:${accent ? '#ff5a1e' : '#f4f4f2'};">${val}</div>
+         <div style="font-family:'Doto',monospace;font-weight:700;font-size:30px;line-height:1;color:${accent ? '#ff5a1e' : '#f4f4f2'};">${loading ? sk(50, 24) : val}</div>
          <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.14em;color:${accent ? '#8a5a44' : '#7a7a72'};margin-top:8px;">${label}</div>
        </div>`;
 
@@ -190,6 +197,10 @@ class ContribGraph extends HTMLElement {
       `<span style="width:11px;height:11px;border-radius:2px;background:${bg};box-shadow:${glow || 'none'};"></span>`;
 
     this.innerHTML = `
+      <style>
+        @keyframes cg-shimmer { 0% { transform: translateX(-120%); } 100% { transform: translateX(320%); } }
+        @keyframes cg-pulse { 0%, 100% { opacity: .4; } 50% { opacity: .85; } }
+      </style>
       <div style="border:1px solid #1f1f1f;border-radius:14px;background:#0a0a0a;padding:clamp(16px,3vw,24px);">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px;">
           <div role="group" aria-label="contribution source" style="display:flex;gap:8px;">
@@ -198,7 +209,9 @@ class ContribGraph extends HTMLElement {
             <button data-src="gl" aria-pressed="${src === 'gl'}" style="${this._chipStyle(src === 'gl')}">GITLAB</button>
           </div>
           <div style="display:flex;align-items:baseline;gap:8px;">
-            <span style="font-family:'Doto',monospace;font-weight:700;font-size:30px;line-height:1;color:#ff5a1e;text-shadow:0 0 12px rgba(255,90,30,.45);">${st.total}</span>
+            ${loading
+              ? sk(58, 26)
+              : `<span style="font-family:'Doto',monospace;font-weight:700;font-size:30px;line-height:1;color:#ff5a1e;text-shadow:0 0 12px rgba(255,90,30,.45);">${st.total}</span>`}
             <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;color:#7a7a72;">CONTRIBUTIONS</span>
           </div>
         </div>
@@ -208,8 +221,11 @@ class ContribGraph extends HTMLElement {
             <div style="display:grid;grid-template-rows:repeat(7,11px);gap:3px;font-family:'Space Mono',monospace;font-size:8px;color:#6c6c6c;align-items:center;">
               <span></span><span>MON</span><span></span><span>WED</span><span></span><span>FRI</span><span></span>
             </div>
-            <div style="display:grid;grid-template-rows:repeat(7,11px);grid-auto-flow:column;grid-auto-columns:11px;gap:3px;">
-              ${cells}
+            <div style="position:relative;overflow:hidden;border-radius:3px;" aria-busy="${loading ? 'true' : 'false'}">
+              <div style="display:grid;grid-template-rows:repeat(7,11px);grid-auto-flow:column;grid-auto-columns:11px;gap:3px;">
+                ${cells}
+              </div>
+              ${loading ? '<div style="position:absolute;inset:0;width:40%;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,255,255,.10),transparent);animation:cg-shimmer 1.25s ease-in-out infinite;"></div>' : ''}
             </div>
           </div>
         </div>
