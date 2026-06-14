@@ -1,0 +1,15 @@
+---
+// CV file card with COPY / SAVE actions. The markdown is the single
+// canonical file at the repo root, imported raw at build time and passed
+// to the cv-actions web component as base64 (UTF-8 safe).
+import cvRaw from '../../../michal-tajchert-cv.md?raw';
+const cvB64 = Buffer.from(cvRaw, 'utf-8').toString('base64');
+---
+<cv-actions
+  data-filename="michal-tajchert-cv.md"
+  data-label="CURRICULUM VITAE · 履歴書"
+  data-md={cvB64}
+></cv-actions>
+<script>
+  import '../../web-components/cv-actions.js';
+</script>
