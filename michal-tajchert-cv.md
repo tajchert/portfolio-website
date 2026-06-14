@@ -44,6 +44,7 @@ Early commercial Android development work, including Banamo, a privacy-focused s
 ## Education
 
 ### SGH Warsaw School of Economics — Master's degree, E-Business · 2015 — 2019
+- Toronto Metropolitan University, Canada · Feb 2017 — Jul 2017
 
 ### Polish-Japanese Academy of Information Technology — Bachelor of Engineering, Computer Science (Mobile Devices) · 2011 — 2015
 

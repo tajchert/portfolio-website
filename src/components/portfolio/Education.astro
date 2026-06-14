@@ -4,6 +4,9 @@ const education = [
     title: 'SGH Warsaw School of Economics',
     degree: "Master's degree, E-Business",
     meta: '2015 — 2019',
+    sub: [
+      { title: 'Toronto Metropolitan University, Canada', meta: 'Feb 2017 — Jul 2017' },
+    ],
   },
   {
     title: 'Polish-Japanese Academy of Information Technology',
@@ -32,6 +35,22 @@ const education = [
             <h3 style="font-size:clamp(17px,2.4vw,20px);font-weight:600;color:#f4f4f2;margin-bottom:5px;">{e.title}</h3>
             <div style="font-family:var(--rf-font-mono);font-size:12px;letter-spacing:.04em;color:#9a9a92;margin-bottom:10px;">{e.degree} &nbsp;·&nbsp; {e.meta}</div>
             {e.note && <p style="margin:0;font-size:14px;line-height:1.6;color:#8a8a82;max-width:560px;text-wrap:pretty;">{e.note}</p>}
+            {e.sub && e.sub.length > 0 && (
+              <div class="pf-subtimeline">
+                {e.sub.map((s, j) => (
+                  <div class="pf-subentry">
+                    <div class="pf-subrail">
+                      <span class="pf-subnode"></span>
+                      {j < e.sub.length - 1 && <span class="pf-subline"></span>}
+                    </div>
+                    <div class="pf-subbody">
+                      <div style="font-size:clamp(15px,2vw,17px);font-weight:600;color:#f4f4f2;margin-bottom:3px;">{s.title}</div>
+                      <div style="font-family:var(--rf-font-mono);font-size:11px;letter-spacing:.04em;color:#9a9a92;">{s.meta}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       );
