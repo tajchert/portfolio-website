@@ -44,7 +44,6 @@ Early commercial Android development work, including Banamo, a privacy-focused s
 ## Education
 
 ### SGH Warsaw School of Economics — Master's degree, E-Business · 2015 — 2019
-Featured in Polish tech press for an unconventional approach to the entrance exam: built code that analysed admission-score trends from previous years to prepare.
 
 ### Polish-Japanese Academy of Information Technology — Bachelor of Engineering, Computer Science (Mobile Devices) · 2011 — 2015
 
