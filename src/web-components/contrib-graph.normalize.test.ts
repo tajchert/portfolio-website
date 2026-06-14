@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { generateDays, dayValue, bucket, computeStats } from './contrib-graph.normalize';
+import { generateDays, dayValue, bucket, computeStats, indexByDate, buildWindow } from './contrib-graph.normalize';
 
 describe('generateDays', () => {
   it('produces 53*7 = 371 deterministic days', () => {
@@ -62,5 +62,45 @@ describe('computeStats', () => {
   it('current streak is 0 when the last day is empty', () => {
     const days = [{ gh: 2, gl: 0 }, { gh: 0, gl: 0 }];
     expect(computeStats(days, 'all').current).toBe(0);
+  });
+});
+
+describe('indexByDate', () => {
+  it('maps github/gitlab to gh/gl keyed by date', () => {
+    const idx = indexByDate([
+      { date: '2026-01-04', github: 0, gitlab: 2 },
+      { date: '2026-01-14', github: 8, gitlab: 21 },
+    ]);
+    expect(idx['2026-01-04']).toEqual({ gh: 0, gl: 2 });
+    expect(idx['2026-01-14']).toEqual({ gh: 8, gl: 21 });
+  });
+  it('treats missing counts as 0 and ignores entries without a date', () => {
+    const idx = indexByDate([{ date: '2026-02-01' } as any, { github: 5 } as any]);
+    expect(idx['2026-02-01']).toEqual({ gh: 0, gl: 0 });
+    expect(Object.keys(idx)).toEqual(['2026-02-01']);
+  });
+});
+
+describe('buildWindow', () => {
+  it('returns weeks*7 cells in column-major order', () => {
+    const cells = buildWindow({}, '2026-06-14', 53);
+    expect(cells).toHaveLength(53 * 7);
+    expect(cells.every((c) => c.gh === 0 && c.gl === 0)).toBe(true);
+  });
+
+  it('places a date in the correct cell and zero-fills the rest', () => {
+    // 2026-06-14 is a Sunday → the last column is that week; row 0 = Sunday.
+    const cells = buildWindow(indexByDate([{ date: '2026-06-14', github: 3, gitlab: 4 }]), '2026-06-14', 53);
+    const lastColRow0 = cells[(53 - 1) * 7 + 0];
+    expect(lastColRow0).toEqual({ gh: 3, gl: 4 });
+    // exactly one populated cell
+    expect(cells.filter((c) => c.gh || c.gl)).toHaveLength(1);
+  });
+
+  it('spans roughly a year back from today', () => {
+    // a date ~52 weeks before today should land in the first column
+    const cells = buildWindow(indexByDate([{ date: '2025-06-15', github: 1, gitlab: 0 }]), '2026-06-14', 53);
+    const firstColRow0 = cells[0]; // 2025-06-15 is a Sunday
+    expect(firstColRow0).toEqual({ gh: 1, gl: 0 });
   });
 });

@@ -60,3 +60,41 @@ export function computeStats(days: Day[], src: Source): Stats {
 /** Cell background ramp (level 0..4) and matching glow — matches the design. */
 export const CONTRIB_BG = ['#161616', 'rgba(244,244,242,.24)', 'rgba(244,244,242,.46)', 'rgba(244,244,242,.74)', '#ff5a1e'];
 export const CONTRIB_GLOW = ['none', 'none', 'none', '0 0 4px rgba(244,244,242,.4)', '0 0 7px rgba(255,90,30,.75)'];
+
+/* ── Real data: map a contribution API ({days:[{date,github,gitlab}]}) into the
+   grid. Works with one or more years concatenated. ────────────────────────── */
+
+export interface RawDay { date: string; github?: number; gitlab?: number; }
+
+/** Index raw API days by ISO date (YYYY-MM-DD). Later entries win on collision. */
+export function indexByDate(days: RawDay[]): Record<string, Day> {
+  const out: Record<string, Day> = {};
+  for (const d of days) {
+    if (d && d.date) out[d.date] = { gh: d.github || 0, gl: d.gitlab || 0 };
+  }
+  return out;
+}
+
+/**
+ * Build a column-major, Sunday-first window of `weeks` columns (7 rows each)
+ * ending in the week that contains `todayISO`. Missing/out-of-range dates are
+ * zero. Index order is `col*7 + row`, matching the CSS grid (grid-auto-flow:
+ * column, 7 rows) so the rightmost column is the current week.
+ */
+export function buildWindow(byDate: Record<string, Day>, todayISO: string, weeks = 53): Day[] {
+  const today = new Date(todayISO + 'T00:00:00Z');
+  const sunday = new Date(today);
+  sunday.setUTCDate(today.getUTCDate() - today.getUTCDay()); // back to Sunday (0=Sun)
+  const start = new Date(sunday);
+  start.setUTCDate(sunday.getUTCDate() - (weeks - 1) * 7);
+  const iso = (dt: Date) => dt.toISOString().slice(0, 10);
+  const out: Day[] = [];
+  for (let col = 0; col < weeks; col++) {
+    for (let row = 0; row < 7; row++) {
+      const dt = new Date(start);
+      dt.setUTCDate(start.getUTCDate() + col * 7 + row);
+      out.push(byDate[iso(dt)] || { gh: 0, gl: 0 });
+    }
+  }
+  return out;
+}

@@ -1,5 +1,6 @@
 ---
 import Glyph from '../Glyph.astro';
+import { BLOG_URL } from '../../config';
 const nav = [
   { href: '#work', label: 'WORK' },
   { href: '#log', label: 'EXP' },
@@ -20,6 +21,7 @@ const nav = [
     </a>
     <nav class="pf-statusbar-nav" aria-label="Sections" style="display:flex;align-items:center;gap:clamp(12px,2.4vw,26px);font-family:var(--rf-font-mono);font-size:10.5px;letter-spacing:.18em;color:#7a7a72;">
       {nav.map((n) => <a href={n.href} class="pf-link-accent">{n.label}</a>)}
+      <a href={BLOG_URL} target="_blank" rel="noopener" class="pf-link-accent">BLOG ↗</a>
     </nav>
     <div style="display:flex;align-items:center;gap:7px;font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.14em;color:#7a7a72;">
       <Glyph shape="dot" w={7} h={7} accent pulse="rec" />

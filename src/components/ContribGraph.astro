@@ -2,6 +2,9 @@
 interface Props {
   seed?: number;
   source?: 'all' | 'gh' | 'gl';
+  /** Contributions API URL (e.g. commitgraph). When set, the graph fetches
+      real data live; otherwise it shows deterministic placeholder data. */
+  src?: string;
   'data-preview'?: boolean;
 }
 const p = Astro.props;
@@ -9,6 +12,7 @@ const p = Astro.props;
 <contrib-graph
   seed={p.seed}
   source={p.source}
+  data-src={p.src}
   data-preview={p['data-preview'] ? '' : undefined}
 ></contrib-graph>
 <script>
