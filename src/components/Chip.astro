@@ -1,0 +1,20 @@
+---
+interface Props { label: string; selected?: boolean; led?: boolean; tone?: 'default' | 'mono'; }
+const { label, selected = false, led = true, tone = 'default' } = Astro.props;
+const base = 'display:inline-flex;align-items:center;gap:9px;height:34px;padding:0 14px;border-radius:10px;font-family:var(--rf-font-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;';
+let style, dotStyle;
+if (tone === 'mono') {
+  style = 'background:var(--rf-ink);color:var(--rf-surface-2);';
+  dotStyle = 'width:7px;height:7px;border-radius:50%;background:var(--rf-surface-2);box-shadow:var(--rf-glow-white);';
+} else if (selected) {
+  style = 'border:1px solid var(--rf-accent);background:color-mix(in srgb, var(--rf-accent) 12%, var(--rf-surface-2));color:var(--rf-ink);';
+  dotStyle = 'width:7px;height:7px;border-radius:50%;background:var(--rf-accent);box-shadow:var(--rf-glow-orange);';
+} else {
+  style = 'border:1px solid var(--rf-border);background:var(--rf-surface-2);color:var(--rf-ink-dim);';
+  dotStyle = 'width:7px;height:7px;border-radius:50%;border:1.5px solid var(--rf-border-2);box-sizing:border-box;';
+}
+---
+<span style={base + style}>
+  {led && <span style={dotStyle}></span>}
+  {label}
+</span>

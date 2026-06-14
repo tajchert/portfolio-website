@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import StatusBar from '../components/portfolio/StatusBar.astro';
+import Hero from '../components/portfolio/Hero.astro';
+import RoleFlap from '../components/portfolio/RoleFlap.astro';
+import About from '../components/portfolio/About.astro';
+import Projects from '../components/portfolio/Projects.astro';
+import Experience from '../components/portfolio/Experience.astro';
+import Activity from '../components/portfolio/Activity.astro';
+import Talks from '../components/portfolio/Talks.astro';
+import Connect from '../components/portfolio/Connect.astro';
+---
+<Base>
+  <StatusBar />
+  <div id="top" style="max-width:1080px;margin:0 auto;padding:clamp(40px,7vw,84px) clamp(16px,4vw,40px) 120px;">
+    <Hero />
+    <RoleFlap />
+    <About />
+    <Projects />
+    <Experience />
+    <Activity />
+    <Talks />
+    <Connect />
+  </div>
+</Base>

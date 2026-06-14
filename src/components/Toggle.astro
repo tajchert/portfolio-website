@@ -1,0 +1,8 @@
+---
+interface Props { label: string; on?: boolean; disabled?: boolean; }
+const { label, on = false, disabled = false } = Astro.props;
+---
+<rf-toggle label={label} on={on || undefined} disabled={disabled || undefined} style="flex:1;display:flex;"></rf-toggle>
+<script>
+  import '../web-components/rf-toggle.js';
+</script>

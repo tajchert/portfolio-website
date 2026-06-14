@@ -1,0 +1,16 @@
+---
+interface Props { name: 'power' | 'play' | 'heart' | 'powerplus' | 'profile' | 'add'; size?: number; accent?: boolean; pitch?: number; }
+const { name, size = 58, accent = false, pitch = 4.4 } = Astro.props;
+const PATHS: Record<string, string> = {
+  power: 'M13,2L4,14L11,14L9,22L20,9L13,9Z',
+  play: 'M8,5L19,12L8,19Z',
+  heart: 'M12,21C12,21,3,14,3,8.5C3,5.9,5.1,4,7.5,4C9.2,4,10.7,5,11.5,6.4L12,7.2L12.5,6.4C13.3,5,14.8,4,16.5,4C18.9,4,21,5.9,21,8.5C21,14,12,21,12,21Z',
+  powerplus: 'M4,8h13a1,1,0,0,1,1,1v6a1,1,0,0,1,-1,1H4a1,1,0,0,1,-1,-1V9a1,1,0,0,1,1,-1zM19,10h1.6v4H19z',
+  profile: 'M12,4a4,4,0,1,1,0,8a4,4,0,0,1,0,-8zM4,21c0,-4.4,3.6,-7,8,-7s8,2.6,8,7z',
+  add: 'M11,4h2v7h7v2h-7v7h-2v-7H4v-2h7z',
+};
+const color = accent ? 'var(--rf-accent)' : 'var(--rf-ink)';
+const svg = encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="${PATHS[name]}" fill="black"/></svg>`);
+const mask = `url('data:image/svg+xml,${svg}')`;
+---
+<span style={`display:inline-block;width:${size}px;height:${size}px;background-image:radial-gradient(circle, ${color} 0 1.4px, transparent 1.7px);background-size:${pitch}px ${pitch}px;background-position:center;-webkit-mask-image:${mask};mask-image:${mask};-webkit-mask-size:78%;mask-size:78%;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;`}></span>

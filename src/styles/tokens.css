@@ -1,0 +1,29 @@
+:root {
+  /* accent — constant across themes (the one true accent) */
+  --rf-accent: #ff4d12;
+  --rf-accent-hi: #ff5a1e;
+  --rf-accent-soft: #ff8a5a;
+  --rf-accent-hover: #e23d08;
+  --rf-accent-press: #c8350a;
+  --rf-accent-error: #d0421a;
+
+  /* radii / sizing */
+  --rf-radius-sm: 8px;
+  --rf-radius: 11px;
+  --rf-radius-md: 14px;
+  --rf-radius-lg: 18px;
+  --rf-pill: 9999px;
+
+  /* texture */
+  --rf-dot-pitch: 17px;
+
+  /* type */
+  --rf-font-display: 'Doto', monospace;
+  --rf-font-mono: 'Space Mono', monospace;
+  --rf-font-jp: 'DotGothic16', monospace;
+  --rf-font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  /* tracking */
+  --rf-track-label: .2em;
+  --rf-track-eyebrow: .28em;
+}

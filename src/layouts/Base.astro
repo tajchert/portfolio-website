@@ -1,0 +1,27 @@
+---
+import '../styles/tokens.css';
+import '../styles/themes.css';
+import '../styles/keyframes.css';
+import '../styles/base.css';
+import '../styles/portfolio.css';
+interface Props { title?: string; description?: string; }
+const {
+  title = 'Michał Tajchert — CTO',
+  description = 'Michał Tajchert — Chief Technology Officer. Mobile, platform & eCommerce engineering. Warsaw, PL.',
+} = Astro.props;
+---
+<html lang="en" data-theme="dark" style="background:#0b0b0b;">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0b0b0b" />
+  </head>
+  <body style="background:#0b0b0b;">
+    <slot />
+  </body>
+</html>

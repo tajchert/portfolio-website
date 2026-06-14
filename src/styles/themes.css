@@ -1,0 +1,42 @@
+:root,
+[data-theme='dark'] {
+  --rf-surface: #000;
+  --rf-surface-2: #0a0a0a;
+  --rf-surface-inset: #070707;
+  --rf-border: #1c1c1c;
+  --rf-border-2: #2c2c2c;
+  --rf-hairline: #161616;
+  --rf-ink: #f4f4f2;
+  --rf-ink-dim: #7a7a7a;
+  --rf-ink-faint: #6c6c6c;
+  --rf-field: #e6e6e3; /* not used in dark page; kept for parity */
+  --rf-page: #000;
+  --rf-dot-color: rgba(255, 255, 255, .05);
+  --rf-led: #fff;
+  --rf-glow-white: 0 0 9px rgba(255, 255, 255, .7);
+  --rf-glow-orange: 0 0 9px rgba(255, 77, 18, .85);
+  /* inverted stat plate stays dark in both themes */
+  --rf-plate-bg: #000;
+  --rf-plate-ink: #fff;
+  --rf-plate-dim: #7a7a7a;
+}
+
+[data-theme='light'] {
+  --rf-surface: #f4f4f2;
+  --rf-surface-2: #fff;
+  --rf-surface-inset: #f0f0ec;
+  --rf-border: #d2d2cc;
+  --rf-border-2: #c4c1b8;
+  --rf-hairline: #e2e2dd;
+  --rf-ink: #0c0c0d;
+  --rf-ink-dim: #75756f;
+  --rf-ink-faint: #9a9a92;
+  --rf-page: #e6e6e3;
+  --rf-dot-color: rgba(0, 0, 0, .08);
+  --rf-led: #0c0c0d;
+  --rf-glow-white: none;
+  --rf-glow-orange: 0 0 8px rgba(255, 77, 18, .5);
+  --rf-plate-bg: #000;
+  --rf-plate-ink: #fff;
+  --rf-plate-dim: #7a7a7a;
+}

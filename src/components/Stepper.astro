@@ -1,0 +1,9 @@
+---
+interface Props { value?: string; }
+const { value = '03' } = Astro.props;
+---
+<div style="display:flex;align-items:center;border:1px solid var(--rf-border);border-radius:11px;background:var(--rf-surface-2);height:50px;width:160px;overflow:hidden;">
+  <button type="button" aria-label="decrement" style="cursor:pointer;background:none;border:none;width:50px;height:100%;border-right:1px solid var(--rf-border);font-family:var(--rf-font-mono);font-size:18px;color:var(--rf-accent);">–</button>
+  <div class="rf-display" style="flex:1;text-align:center;font-weight:700;font-size:22px;color:var(--rf-ink);">{value}</div>
+  <button type="button" aria-label="increment" style="cursor:pointer;background:none;border:none;width:50px;height:100%;border-left:1px solid var(--rf-border);font-family:var(--rf-font-mono);font-size:18px;color:var(--rf-accent);">+</button>
+</div>

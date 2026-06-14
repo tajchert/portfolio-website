@@ -1,0 +1,13 @@
+/* Portfolio-page utilities. The page is dark-locked; values match the design. */
+
+@keyframes cursor-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+
+/* hover translations from the prototype's style-hover attribute */
+.pf-link-accent { transition: color .15s ease; }
+.pf-link-accent:hover { color: var(--rf-accent); }
+
+.pf-card-accent { transition: border-color .15s ease; }
+.pf-card-accent:hover { border-color: var(--rf-accent); }
+
+.pf-card-soft { transition: border-color .15s ease; }
+.pf-card-soft:hover { border-color: #3a3a3a; }

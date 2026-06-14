@@ -1,0 +1,16 @@
+---
+interface Props {
+  seed?: number;
+  source?: 'all' | 'gh' | 'gl';
+  'data-preview'?: boolean;
+}
+const p = Astro.props;
+---
+<contrib-graph
+  seed={p.seed}
+  source={p.source}
+  data-preview={p['data-preview'] ? '' : undefined}
+></contrib-graph>
+<script>
+  import '../web-components/contrib-graph.js';
+</script>

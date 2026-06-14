@@ -1,0 +1,99 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'solid' | 'ghost' | 'link' | 'keycap' | 'cta';
+  state?: 'default' | 'hover' | 'press' | 'focus' | 'off' | 'loading';
+  glyph?: boolean;        // leading LED dot
+  arrow?: boolean;        // trailing arrow (link/cta)
+  fullWidth?: boolean;
+  label: string;
+  'data-preview'?: boolean;
+}
+const { variant = 'primary', state = 'default', glyph = false, arrow = false, fullWidth = false, label, 'data-preview': dataPreview } = Astro.props;
+
+const mono = 'font-family:var(--rf-font-mono);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;';
+const pill = 'height:46px;border-radius:9999px;padding:0 22px;display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;border:none;';
+const widthStyle = fullWidth || variant === 'cta' ? 'width:100%;' : '';
+
+// keycap and cta need special structural overrides
+const structOverride = variant === 'keycap' ? 'border-radius:12px;' :
+                       variant === 'cta' ? 'height:50px;letter-spacing:.14em;' :
+                       variant === 'ghost' || variant === 'link' ? 'height:40px;padding:0 6px;' : '';
+
+const arrowSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const glyphDot = `<span style="width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:var(--rf-glow-white);"></span>`;
+const dots = `<span style="display:inline-flex;gap:6px;"><span style="width:7px;height:7px;border-radius:50%;background:#fff;animation:glyph-pulse 1s ease-in-out infinite;"></span><span style="width:7px;height:7px;border-radius:50%;background:#fff;animation:glyph-pulse 1s ease-in-out infinite;animation-delay:.18s;"></span><span style="width:7px;height:7px;border-radius:50%;background:#fff;animation:glyph-pulse 1s ease-in-out infinite;animation-delay:.36s;"></span></span>`;
+---
+<button type="button" style={`${pill}${mono}${structOverride}${widthStyle}`}
+  data-variant={variant} data-state={state}
+  data-preview={dataPreview ? '' : undefined}>
+  {glyph && <Fragment set:html={glyphDot} />}
+  {state === 'loading' ? <Fragment set:html={dots} /> : label}
+  {arrow && state !== 'loading' && <Fragment set:html={arrowSvg} />}
+</button>
+<style>
+  /* === PRIMARY === */
+  button[data-variant='primary'][data-state='default'] { background: var(--rf-accent); color: #fff; }
+  button[data-variant='primary'][data-state='hover']   { background: var(--rf-accent-hover); color: #fff; }
+  button[data-variant='primary'][data-state='press']   { background: var(--rf-accent-press); color: #fff; transform: translateY(1px); }
+  button[data-variant='primary'][data-state='focus']   { background: var(--rf-accent); color: #fff; box-shadow: 0 0 0 3px color-mix(in srgb, var(--rf-accent) 30%, transparent); }
+  button[data-variant='primary'][data-state='off']     { background: var(--rf-border); color: var(--rf-ink-faint); border: 1px solid var(--rf-border-2); }
+  button[data-variant='primary'][data-state='loading'] { background: var(--rf-accent-press); color: #fff; }
+
+  /* === SECONDARY === */
+  button[data-variant='secondary'][data-state='default'] { background: transparent; color: var(--rf-ink); border: 1px solid var(--rf-border-2); }
+  button[data-variant='secondary'][data-state='hover']   { background: transparent; color: var(--rf-ink); border: 1px solid var(--rf-ink); }
+  button[data-variant='secondary'][data-state='press']   { background: transparent; color: var(--rf-ink); border: 1px solid var(--rf-ink); transform: translateY(1px); }
+  button[data-variant='secondary'][data-state='focus']   { background: transparent; color: var(--rf-ink); border: 1px solid var(--rf-border-2); box-shadow: 0 0 0 3px color-mix(in srgb, var(--rf-ink) 10%, transparent); }
+  button[data-variant='secondary'][data-state='off']     { background: transparent; color: var(--rf-ink-faint); border: 1px solid var(--rf-border); }
+  button[data-variant='secondary'][data-state='loading'] { background: transparent; color: var(--rf-ink-faint); border: 1px solid var(--rf-border-2); }
+
+  /* === SOLID === */
+  button[data-variant='solid'][data-state='default'] { background: var(--rf-ink); color: var(--rf-surface-2); }
+  button[data-variant='solid'][data-state='hover']   { background: var(--rf-border-2); color: var(--rf-surface-2); }
+  button[data-variant='solid'][data-state='press']   { background: var(--rf-border-2); color: var(--rf-surface-2); transform: translateY(1px); }
+  button[data-variant='solid'][data-state='focus']   { background: var(--rf-ink); color: var(--rf-surface-2); box-shadow: 0 0 0 3px color-mix(in srgb, var(--rf-ink) 20%, transparent); }
+  button[data-variant='solid'][data-state='off']     { background: var(--rf-border); color: var(--rf-ink-faint); }
+  button[data-variant='solid'][data-state='loading'] { background: var(--rf-border-2); color: var(--rf-surface-2); }
+
+  /* === GHOST === */
+  button[data-variant='ghost'][data-state='default'] { background: none; color: var(--rf-ink-dim); border: none; }
+  button[data-variant='ghost'][data-state='hover']   { background: none; color: var(--rf-ink); border: none; }
+  button[data-variant='ghost'][data-state='press']   { background: none; color: var(--rf-ink); border: none; transform: translateY(1px); }
+  button[data-variant='ghost'][data-state='focus']   { background: none; color: var(--rf-ink); border: none; }
+  button[data-variant='ghost'][data-state='off']     { background: none; color: var(--rf-ink-faint); border: none; }
+  button[data-variant='ghost'][data-state='loading'] { background: none; color: var(--rf-ink-faint); border: none; }
+
+  /* === LINK === */
+  button[data-variant='link'][data-state='default'] { background: none; color: var(--rf-accent-soft); border: none; }
+  button[data-variant='link'][data-state='hover']   { background: none; color: var(--rf-accent); border: none; }
+  button[data-variant='link'][data-state='press']   { background: none; color: var(--rf-accent-press); border: none; transform: translateY(1px); }
+  button[data-variant='link'][data-state='focus']   { background: none; color: var(--rf-accent-soft); border: none; }
+  button[data-variant='link'][data-state='off']     { background: none; color: var(--rf-ink-faint); border: none; }
+  button[data-variant='link'][data-state='loading'] { background: none; color: var(--rf-ink-faint); border: none; }
+
+  /* === KEYCAP === */
+  button[data-variant='keycap'][data-state='default'] { background: var(--rf-surface-2); color: var(--rf-ink); box-shadow: 0 3px 0 rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.1); border: none; }
+  button[data-variant='keycap'][data-state='hover']   { background: var(--rf-surface-2); color: var(--rf-ink); box-shadow: 0 4px 0 rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.1); border: none; }
+  button[data-variant='keycap'][data-state='press']   { background: var(--rf-surface-2); color: var(--rf-ink); box-shadow: 0 1px 0 rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.1); border: none; transform: translateY(2px); }
+  button[data-variant='keycap'][data-state='focus']   { background: var(--rf-surface-2); color: var(--rf-ink); box-shadow: 0 3px 0 rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.1); border: none; }
+  button[data-variant='keycap'][data-state='off']     { background: var(--rf-surface-2); color: var(--rf-ink-faint); box-shadow: 0 2px 0 rgba(0,0,0,.3); border: none; }
+  button[data-variant='keycap'][data-state='loading'] { background: var(--rf-surface-2); color: var(--rf-ink-faint); box-shadow: 0 2px 0 rgba(0,0,0,.3); border: none; }
+
+  /* === CTA === */
+  button[data-variant='cta'][data-state='default'] { background: var(--rf-accent); color: #fff; box-shadow: 0 0 18px rgba(255,77,18,.4); border: none; width: 100%; }
+  button[data-variant='cta'][data-state='hover']   { background: var(--rf-accent-hover); color: #fff; box-shadow: 0 0 22px rgba(255,77,18,.5); border: none; width: 100%; }
+  button[data-variant='cta'][data-state='press']   { background: var(--rf-accent-press); color: #fff; box-shadow: 0 0 14px rgba(255,77,18,.3); border: none; width: 100%; transform: translateY(1px); }
+  button[data-variant='cta'][data-state='focus']   { background: var(--rf-accent); color: #fff; box-shadow: 0 0 18px rgba(255,77,18,.4), 0 0 0 3px color-mix(in srgb, var(--rf-accent) 30%, transparent); border: none; width: 100%; }
+  button[data-variant='cta'][data-state='off']     { background: var(--rf-border); color: var(--rf-ink-faint); box-shadow: none; border: none; width: 100%; }
+  button[data-variant='cta'][data-state='loading'] { background: var(--rf-accent-press); color: #fff; box-shadow: 0 0 14px rgba(255,77,18,.3); border: none; width: 100%; }
+
+  /* === LIVE INTERACTION (real hover/active for default-state buttons) === */
+  button[data-variant='primary'][data-state='default']:hover  { background: var(--rf-accent-hover); }
+  button[data-variant='primary'][data-state='default']:active { background: var(--rf-accent-press); transform: translateY(1px); }
+  button[data-variant='secondary']:hover { border-color: var(--rf-ink); }
+  button[data-variant='solid']:hover { background: var(--rf-border-2); }
+  button[data-variant='ghost']:hover { color: var(--rf-ink); }
+  button[data-variant='link']:hover { color: var(--rf-accent); }
+  button[data-variant='cta'][data-state='default']:hover { background: var(--rf-accent-hover); }
+  button[data-variant='keycap']:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.1); }
+</style>
