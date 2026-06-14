@@ -40,15 +40,25 @@ export function bucket(c: number): number {
   return !c ? 0 : c <= 2 ? 1 : c <= 5 ? 2 : c <= 9 ? 3 : 4;
 }
 
-export function computeStats(days: Day[], src: Source): Stats {
+/**
+ * `todayIndex` marks the cell for "today". A rolling window ends with the
+ * current week, whose cells after today are future/zero — counting the current
+ * streak from the array end would always hit those and report 0. When
+ * `todayIndex` is given, the current streak counts back from there, with a
+ * grace day (an as-yet-empty *today* doesn't reset the streak). Default (-1)
+ * counts strictly from the last cell (placeholder data has no future cells).
+ */
+export function computeStats(days: Day[], src: Source, todayIndex = -1): Stats {
   const total = days.reduce((a, day) => a + dayValue(day, src), 0);
   let longest = 0, run = 0;
   for (const day of days) {
     if (dayValue(day, src) > 0) { run++; longest = Math.max(longest, run); }
     else run = 0;
   }
+  let start = todayIndex >= 0 ? Math.min(todayIndex, days.length - 1) : days.length - 1;
+  if (todayIndex >= 0 && start >= 0 && dayValue(days[start], src) === 0) start--; // grace: today not over yet
   let current = 0;
-  for (let i = days.length - 1; i >= 0; i--) {
+  for (let i = start; i >= 0; i--) {
     if (dayValue(days[i], src) > 0) current++;
     else break;
   }
