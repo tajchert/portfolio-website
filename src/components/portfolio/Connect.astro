@@ -1,5 +1,4 @@
 ---
-import CvActions from './CvActions.astro';
 import { BLOG_URL } from '../../config';
 const links = [
   { label: 'BLOG', handle: new URL(BLOG_URL).host, href: BLOG_URL },
@@ -16,9 +15,7 @@ const links = [
   </div>
   <div style="height:1px;background:#1a1a1a;margin-bottom:24px;"></div>
 
-  <CvActions />
-
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:28px;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
     {links.map((l) => (
       <a href={l.href} target="_blank" rel="noopener" class="pf-card-accent" style="border:1px solid #1f1f1f;border-radius:12px;background:#0d0d0d;padding:20px;display:flex;align-items:center;justify-content:space-between;">
         <div>
