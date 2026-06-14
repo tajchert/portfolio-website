@@ -14,3 +14,19 @@ a { color: inherit; text-decoration: none; }
 
 .pf-card-soft { transition: border-color .15s ease; }
 .pf-card-soft:hover { border-color: #3a3a3a; }
+
+/* ── Responsive ─────────────────────────────────────────────────────────
+   The split-flap role display has two sizes: full on tablet/desktop, compact
+   on phones so the longest word fits without horizontal scroll. */
+.pf-flap-sm { display: none; }
+
+@media (max-width: 600px) {
+  /* In-page anchor nav doesn't fit a phone status bar; the page is a single
+     scroll, so drop it and keep the wordmark + ONLINE indicator.
+     !important overrides the element's inline display:flex. */
+  .pf-statusbar-nav { display: none !important; }
+
+  /* swap the big split-flap for the compact one */
+  .pf-flap-lg { display: none; }
+  .pf-flap-sm { display: inline-block; }
+}

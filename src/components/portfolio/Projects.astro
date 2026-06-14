@@ -30,7 +30,7 @@ const secondary = [
   <div style="font-size:14px;color:#7a7a72;margin-bottom:24px;">Indie apps &amp; side projects. <span style="color:#ff8a5a;">★</span> = highlighted.</div>
 
   <!-- featured -->
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:16px;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;margin-bottom:16px;">
     {featured.map((p) => (
       <a href="#" class="pf-card-accent" style="border:1px solid #242424;border-radius:14px;background:#0d0d0d;padding:22px;display:block;position:relative;overflow:hidden;">
         <div style="position:absolute;top:0;right:0;width:120px;height:120px;background-image:radial-gradient(rgba(255,90,30,.18) 1px,transparent 1.4px);background-size:8px 8px;pointer-events:none;"></div>
@@ -53,7 +53,7 @@ const secondary = [
   </div>
 
   <!-- secondary -->
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px;">
     {secondary.map((p) => (
       <a href="#" class="pf-card-soft" style="border:1px solid #1f1f1f;border-radius:12px;background:#0a0a0a;padding:18px;display:block;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">

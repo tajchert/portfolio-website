@@ -12,7 +12,13 @@ import SplitFlap from '../SplitFlap.astro';
     </span>
   </div>
   <div style="text-align:center;overflow-x:auto;padding:4px 0;">
-    <SplitFlap mode="cycle" values="BUILDER,ENGINEER,MANAGER,MENTOR" theme="dark" size={64} gap={6} interval={2400} align="center" />
+    <!-- full size on tablet/desktop, compact on phones so the word fits without horizontal scroll -->
+    <span class="pf-flap-lg">
+      <SplitFlap mode="cycle" values="BUILDER,ENGINEER,MANAGER,MENTOR" theme="dark" size={64} gap={6} interval={2400} align="center" />
+    </span>
+    <span class="pf-flap-sm">
+      <SplitFlap mode="cycle" values="BUILDER,ENGINEER,MANAGER,MENTOR" theme="dark" size={34} gap={4} interval={2400} align="center" />
+    </span>
   </div>
   <div style="margin-top:clamp(18px,3vw,26px);font-family:var(--rf-font-mono);font-size:10.5px;letter-spacing:.14em;color:#7a7a72;text-align:center;">hands on keys · shipping teams · growing people</div>
 </div>
