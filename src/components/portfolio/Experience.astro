@@ -1,0 +1,42 @@
+---
+const roles = [
+  { title: 'Chief Technology Officer', badge: 'NOW', badgeAccent: true, meta: 'eCommerce Co. · 2023 — present · Warsaw', body: '[ placeholder ] Own the full technology org — mobile, platform, and infra. Set engineering direction, grow the team, ship the roadmap.', accentNode: true },
+  { title: 'Mobile Lead', meta: 'eCommerce Co. · 2020 — 2023', body: '[ placeholder ] Led the mobile org across Android & iOS. Architecture, hiring, and delivery for the flagship shopping app.' },
+  { title: 'Mobile Engineering Manager', badge: 'BANKING', meta: 'Bank · 2017 — 2020', body: '[ placeholder ] Managed mobile teams on a retail banking app — security, scale, and a regulated release process.' },
+  { title: 'Senior Android Developer', badge: 'BANKING', meta: 'Bank · 2014 — 2017', body: '[ placeholder ] Built and shipped core features of the mobile banking app. Six years in the sector all told.' },
+  { title: 'Android Developer', meta: 'Startups & software house · 2011 — 2014', body: '[ placeholder ] Where it started — Android apps for clients and early-stage products. Learned to ship.', dim: true },
+];
+---
+<div id="log" style="margin-bottom:clamp(56px,8vw,96px);scroll-margin-top:64px;">
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap;">
+    <span style="font-family:var(--rf-font-mono);font-size:12px;font-weight:700;letter-spacing:.28em;color:#f4f4f2;">03 / EXPERIENCE</span>
+    <span style="font-family:var(--rf-font-jp);font-size:13px;color:#6c6c6c;white-space:nowrap;flex-shrink:0;">経歴</span>
+  </div>
+  <div style="height:1px;background:#1a1a1a;margin-bottom:28px;"></div>
+
+  <div style="display:flex;flex-direction:column;">
+    {roles.map((r, i) => {
+      const last = i === roles.length - 1;
+      const nodeColor = r.accentNode ? '#ff4d12' : r.dim ? '#3a3a3a' : '#f4f4f2';
+      const nodeGlow = r.accentNode ? '0 0 10px rgba(255,77,18,.8)' : r.dim ? 'none' : '0 0 8px rgba(255,255,255,.4)';
+      return (
+        <div style={`display:grid;grid-template-columns:auto 1fr;gap:clamp(14px,3vw,28px);${last ? '' : 'padding-bottom:28px;'}`}>
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <span style={`width:11px;height:11px;border-radius:50%;background:${nodeColor};box-shadow:${nodeGlow};`}></span>
+            {!last && <span style="flex:1;width:1px;background:#222;margin-top:6px;"></span>}
+          </div>
+          <div>
+            <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:5px;">
+              <span style="font-size:clamp(17px,2.4vw,20px);font-weight:600;color:#f4f4f2;">{r.title}</span>
+              {r.badge && (
+                <span style={`font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.1em;border-radius:999px;padding:2px 9px;${r.badgeAccent ? 'color:#ff8a5a;border:1px solid #5a2a18;' : 'color:#cfcfca;border:1px solid #2a2a2a;'}`}>{r.badge}</span>
+              )}
+            </div>
+            <div style="font-family:var(--rf-font-mono);font-size:12px;letter-spacing:.04em;color:#9a9a92;margin-bottom:10px;">{r.meta}</div>
+            <p style="margin:0;font-size:14px;line-height:1.6;color:#8a8a82;max-width:560px;text-wrap:pretty;">{r.body}</p>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</div>
