@@ -15,11 +15,11 @@ const talks = [
 
   <div style="border:1px solid #1f1f1f;border-radius:14px;background:#0a0a0a;overflow:hidden;">
     {talks.map((t, i) => (
-      <div style={`display:grid;grid-template-columns:auto 1fr auto;gap:clamp(12px,2.5vw,24px);align-items:center;padding:16px clamp(14px,2.5vw,22px);${i === talks.length - 1 ? '' : 'border-bottom:1px solid #161616;'}`}>
-        <span style={`font-family:var(--rf-font-display);font-weight:700;font-size:16px;color:${t.accent ? '#ff5a1e' : '#cfcfca'};`}>{t.n}</span>
-        <div>
-          <h3 style="font-size:15px;font-weight:500;color:#f4f4f2;">{t.title}</h3>
-          <div style="font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.06em;color:#8a8a82;margin-top:3px;">{t.meta}</div>
+      <div style={`display:grid;grid-template-columns:76px 1fr auto;gap:clamp(12px,2.5vw,24px);align-items:center;padding:16px clamp(14px,2.5vw,22px);${i === talks.length - 1 ? '' : 'border-bottom:1px solid #161616;'}`}>
+        <span style={`font-family:var(--rf-font-display);font-weight:700;font-size:16px;white-space:nowrap;color:${t.accent ? '#ff5a1e' : '#cfcfca'};`}>{t.n}</span>
+        <div style="min-width:0;overflow:hidden;">
+          <h3 style="font-size:15px;font-weight:500;color:#f4f4f2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{t.title}</h3>
+          <div style="font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.06em;color:#8a8a82;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{t.meta}</div>
         </div>
         <span style="font-family:var(--rf-font-mono);font-size:10px;color:#6c6c6c;">↗</span>
       </div>

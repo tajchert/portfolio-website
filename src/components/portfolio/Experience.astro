@@ -1,14 +1,95 @@
 ---
 const roles = [
-  { title: 'Chief Technology Officer', badge: 'NOW', badgeAccent: true, meta: 'Lite e-Commerce · Feb 2025 — present · Warsaw', body: 'Leading software, design, and data for Żabka Jush and Delio: engineering direction, product delivery, and team health.', accentNode: true },
-  { title: 'Engineering Manager', badge: 'ECOM', meta: 'MODIVO SA · May 2022 — Dec 2024', body: 'Managed mobile teams for MODIVO and eObuwie apps across 19 markets, plus the Backend-For-Frontend layer and cross-department delivery.' },
-  { title: 'Mobile Technology Leader', meta: 'MODIVO SA · Nov 2021 — May 2022', body: 'Set mobile engineering direction during a fast-growth phase: architecture, team practices, and delivery standards.' },
-  { title: 'Mobile Technology Leader', badge: 'BANKING', meta: 'BlueSoft · Oct 2020 — Oct 2021 · Warsaw', body: 'Led mobile technology and the Android team for Raiffeisen Ukraine while supporting wider mobile initiatives inside BlueSoft.' },
-  { title: 'Technology Business Development Manager', badge: 'FINTECH', meta: 'DXC Technology · Feb 2019 — Sep 2020 · Warsaw', body: 'Owned technology, delivery, and client-facing work for BLIK in the UAE and IKO at PKO BP, bridging architecture, senior teams, and business needs.' },
-  { title: 'Android Team Lead @ Raiffeisen', badge: 'BANKING', meta: 'BlueSoft · Jul 2017 — Jan 2019 · Warsaw', body: 'Led a six-person Android team building a new banking app while maintaining Mobilny Portfel and coordinating the BNP mobile merge.' },
-  { title: 'Startups - Brand24, Yawn, Icelytics, 12Hours', meta: '2015 — 2017 · Warsaw / Toronto', body: 'Built and led early product teams across analytics, mobile apps, and consumer products; mixed Android delivery with founder-level ownership.' },
-  { title: 'Software Engineer', meta: 'Polidea · Jul 2014 — Apr 2015 · Warsaw', body: 'Professional software engineering in a mobile-focused software house, building Android products for clients.' },
-  { title: 'Android Developer', meta: 'BrandCare · Jul 2013 — Oct 2013 · Warsaw', body: 'Early commercial Android work, including Banamo, a privacy-focused safer community app.', dim: true },
+  {
+    title: 'Chief Technology Officer',
+    company: 'Lite e-Commerce',
+    badge: 'NOW',
+    badgeAccent: true,
+    meta: 'Feb 2025 — present · Warsaw',
+    body: 'Leading software, design, and data for Żabka Jush and Delio.',
+    positions: [],
+    details: [],
+    accentNode: true,
+  },
+  {
+    title: 'MODIVO SA',
+    company: 'Full-time',
+    badge: 'ECOM',
+    meta: 'Nov 2021 — Dec 2024 · 3 yrs 2 mos',
+    body: 'Mobile apps and Backend-For-Frontend work for a fast-growing fashion eCommerce group operating across 19 markets.',
+    positions: [
+      {
+        title: 'Engineering Manager',
+        meta: 'May 2022 — Dec 2024',
+      },
+      {
+        title: 'Mobile Technology Leader',
+        meta: 'Nov 2021 — May 2022',
+      },
+    ],
+    details: [],
+  },
+  {
+    title: 'Mobile Technology Leader',
+    company: 'BlueSoft',
+    badge: 'BANKING',
+    meta: 'Oct 2020 — Oct 2021 · Warsaw',
+    body: 'Led mobile technology and the Android team for Raiffeisen Ukraine.',
+    positions: [],
+    details: [],
+  },
+  {
+    title: 'Technology Business Development Manager',
+    company: 'DXC Technology',
+    badge: 'FINTECH',
+    meta: 'Feb 2019 — Sep 2020 · Warsaw',
+    body: 'Worked across technology ownership, software management, architecture, and client-facing business development.',
+    positions: [],
+    details: [
+      'BLIK in the United Arab Emirates.',
+      'IKO at PKO BP.',
+      'Client discovery.',
+    ],
+  },
+  {
+    title: 'Android Team Lead @ Raiffeisen',
+    company: 'BlueSoft',
+    badge: 'BANKING',
+    meta: 'Jul 2017 — Jan 2019 · Warsaw',
+    body: 'Led a six-person Android team building a new banking app while maintaining Mobilny Portfel and coordinating the BNP mobile merge.',
+    positions: [],
+    details: [],
+  },
+  {
+    title: 'Startups',
+    company: 'Warsaw / Toronto',
+    meta: 'Jun 2015 — Jun 2017',
+    body: 'Built and led early product work across analytics, mobile apps, and consumer products; mixed Android delivery with founder-level ownership.',
+    positions: [],
+    details: [
+      { name: 'Brand24', body: 'Team lead, new Android app from scratch.' },
+      { name: 'Yawn', body: 'CEO — team, delivery, and product.' },
+      { name: 'Icelytics', body: 'CEO — mobile network-analytics product.' },
+      { name: '12Hours.io', body: 'Early product and technical direction.' },
+    ],
+  },
+  {
+    title: 'Software Engineer',
+    company: 'Polidea',
+    meta: 'Jul 2014 — Apr 2015 · Warsaw',
+    body: 'Professional software engineering in a mobile-focused software house, building Android products for clients.',
+    positions: [],
+    details: [],
+  },
+  {
+    title: 'Android Developer',
+    company: 'BrandCare',
+    meta: 'Jul 2013 — Oct 2013 · Warsaw',
+    body: 'Early commercial Android work, including Banamo, a privacy-focused safer community app.',
+    positions: [],
+    details: [],
+    dim: true,
+  },
 ];
 ---
 <section id="log" style="margin-bottom:clamp(56px,8vw,96px);scroll-margin-top:64px;">
@@ -18,26 +99,59 @@ const roles = [
   </div>
   <div style="height:1px;background:#1a1a1a;margin-bottom:28px;"></div>
 
-  <div style="display:flex;flex-direction:column;">
+  <div class="pf-timeline">
     {roles.map((r, i) => {
       const last = i === roles.length - 1;
-      const nodeColor = r.accentNode ? '#ff4d12' : r.dim ? '#3a3a3a' : '#f4f4f2';
-      const nodeGlow = r.accentNode ? '0 0 10px rgba(255,77,18,.8)' : r.dim ? 'none' : '0 0 8px rgba(255,255,255,.4)';
+      const nodeClass = `pf-timeline-node${r.accentNode ? ' pf-timeline-node--accent' : ''}${r.dim ? ' pf-timeline-node--dim' : ''}`;
       return (
-        <div style={`display:grid;grid-template-columns:auto 1fr;gap:clamp(14px,3vw,28px);${last ? '' : 'padding-bottom:28px;'}`}>
-          <div style="display:flex;flex-direction:column;align-items:center;">
-            <span style={`width:11px;height:11px;border-radius:50%;background:${nodeColor};box-shadow:${nodeGlow};`}></span>
-            {!last && <span style="flex:1;width:1px;background:#222;margin-top:6px;"></span>}
+        <div class="pf-timeline-entry">
+          <div class="pf-timeline-rail">
+            <span class={nodeClass}></span>
+            {!last && <span class="pf-timeline-line"></span>}
           </div>
-          <div>
+          <div class="pf-timeline-body">
             <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:5px;">
               <h3 style="font-size:clamp(17px,2.4vw,20px);font-weight:600;color:#f4f4f2;">{r.title}</h3>
               {r.badge && (
                 <span style={`font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.1em;border-radius:999px;padding:2px 9px;${r.badgeAccent ? 'color:#ff8a5a;border:1px solid #5a2a18;' : 'color:#cfcfca;border:1px solid #2a2a2a;'}`}>{r.badge}</span>
               )}
             </div>
-            <div style="font-family:var(--rf-font-mono);font-size:12px;letter-spacing:.04em;color:#9a9a92;margin-bottom:10px;">{r.meta}</div>
+            <div style="font-family:var(--rf-font-mono);font-size:12px;letter-spacing:.04em;color:#9a9a92;margin-bottom:10px;">{r.company} &nbsp;·&nbsp; {r.meta}</div>
             <p style="margin:0;font-size:14px;line-height:1.6;color:#8a8a82;max-width:560px;text-wrap:pretty;">{r.body}</p>
+            {r.positions.length > 0 && (
+              <div class="pf-subtimeline">
+                {r.positions.map((p, j) => (
+                  <div class="pf-subentry">
+                    <div class="pf-subrail">
+                      <span class="pf-subnode"></span>
+                      {j < r.positions.length - 1 && <span class="pf-subline"></span>}
+                    </div>
+                    <div class="pf-subbody">
+                      <div style="font-size:clamp(15px,2vw,17px);font-weight:600;color:#f4f4f2;margin-bottom:3px;">{p.title}</div>
+                      <div style={`font-family:var(--rf-font-mono);font-size:11px;letter-spacing:.04em;color:#9a9a92;${p.body ? 'margin-bottom:8px;' : ''}`}>{p.meta}</div>
+                      {p.body && <p style="margin:0;font-size:13.5px;line-height:1.6;color:#8a8a82;max-width:540px;text-wrap:pretty;">{p.body}</p>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            {r.details.length > 0 && (
+              <div class="pf-subtimeline">
+                {r.details.map((d, j) => (
+                  <div class="pf-subentry">
+                    <div class="pf-subrail">
+                      <span class="pf-subnode pf-subnode--dim"></span>
+                      {j < r.details.length - 1 && <span class="pf-subline"></span>}
+                    </div>
+                    <div class="pf-subbody">
+                      <p style="margin:0;font-size:13.5px;line-height:1.6;color:#8a8a82;max-width:540px;text-wrap:pretty;">
+                        {typeof d === 'string' ? d : (<><strong style="font-weight:700;color:#f4f4f2;">{d.name}</strong> — {d.body}</>)}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       );

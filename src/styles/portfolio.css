@@ -20,10 +20,117 @@ h1, h2, h3 { margin: 0; font: inherit; color: inherit; letter-spacing: inherit; 
 .pf-card-soft { transition: border-color .15s ease; }
 .pf-card-soft:hover { border-color: #3a3a3a; }
 
+contrib-graph {
+  display: block;
+  max-width: 100%;
+  overflow-x: hidden;
+  contain: paint;
+}
+
+contrib-graph [data-cg-scroll] {
+  max-width: 100%;
+  contain: paint;
+}
+
 /* ── Responsive ─────────────────────────────────────────────────────────
    The split-flap role display has two sizes: full on tablet/desktop, compact
    on phones so the longest word fits without horizontal scroll. */
 .pf-flap-sm { display: none; }
+
+/* Experience timeline. The spine is one continuous, gap-free vertical line:
+   spacing lives in the body column (.pf-timeline-body padding-bottom), and the
+   rail's line is flex:1 so it stretches the full row height and meets the next
+   node. The last entry omits the line, so the spine terminates at the last dot. */
+.pf-timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.pf-timeline-entry {
+  display: grid;
+  grid-template-columns: 11px 1fr;
+  gap: clamp(14px, 3vw, 28px);
+}
+
+.pf-timeline-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pf-timeline-line {
+  flex: 1;
+  width: 1px;
+  background: #222;
+}
+
+.pf-timeline-body { padding-bottom: 32px; }
+.pf-timeline-entry:last-child .pf-timeline-body { padding-bottom: 0; }
+
+.pf-timeline-node {
+  flex-shrink: 0;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #f4f4f2;
+  box-shadow: 0 0 8px rgba(255,255,255,.4);
+}
+
+.pf-timeline-node--accent {
+  background: #ff4d12;
+  box-shadow: 0 0 10px rgba(255,77,18,.8);
+}
+
+.pf-timeline-node--dim {
+  background: #3a3a3a;
+  box-shadow: none;
+}
+
+/* Nested mini-timeline for multi-role companies (positions) and grouped
+   side projects (details). Same gap-free flex-line spine as the main timeline,
+   one indent in, with smaller dots. */
+.pf-subtimeline {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+}
+
+.pf-subentry {
+  display: grid;
+  grid-template-columns: 7px 1fr;
+  gap: 14px;
+}
+
+.pf-subrail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 6px;
+}
+
+.pf-subline {
+  flex: 1;
+  width: 1px;
+  background: #1c1c1c;
+  margin-top: 2px;
+}
+
+.pf-subbody { padding-bottom: 18px; }
+.pf-subentry:last-child .pf-subbody { padding-bottom: 0; }
+
+.pf-subnode {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #cfcfca;
+  box-shadow: 0 0 6px rgba(255,255,255,.3);
+}
+
+.pf-subnode--dim {
+  background: #6c6c6c;
+  box-shadow: none;
+}
 
 @media (max-width: 600px) {
   /* In-page anchor nav doesn't fit a phone status bar; the page is a single
