@@ -10,9 +10,17 @@ Built with Astro (static output), styled with a vendored copy of the
 npm install
 npm run dev      # http://localhost:4321
 npm run build    # static output → dist/
-npm run preview  # serve the built dist/
+npm run preview  # serve the built dist/ at http://localhost:4321
 npm test         # unit tests (contribution-graph logic)
 ```
+
+> **View over a server, never via `file://`.** Opening `dist/index.html`
+> directly (`file://…`) loads the CSS but browsers block the ES-module
+> scripts on a `file://` origin (CORS), so the interactive web components
+> (split-flap display, contribution heatmap) won't render. Use
+> `npm run preview` (or any static server, e.g. `npx serve dist`). This is
+> only a local-preview concern — Cloudflare Pages serves over HTTPS, so it
+> works there.
 
 ## Deploy to Cloudflare Pages
 
