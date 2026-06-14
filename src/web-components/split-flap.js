@@ -22,7 +22,7 @@
    flapms     ms per single flap step (default 78)
    mode       "static" (default) | "clock" | "cycle"
    values     comma-separated list for mode="cycle"
-   interval   ms between cycle steps (default 3200)
+   interval   cycle dwell: ms a word is held AFTER the flaps settle (default 3200)
 
    Public API
    ──────────
@@ -46,6 +46,8 @@ class SplitFlap extends HTMLElement {
     this._cells = [];
     this._built = false;
     this._timer = null;
+    this._cycleTimer = null;
+    this._cycleStopped = false;
     this._value = "";
   }
 
@@ -202,9 +204,12 @@ class SplitFlap extends HTMLElement {
     if (!this._built) this._build();
     this._value = str == null ? "" : String(str);
     const norm = this._normalize(str);
+    const spins = [];
     for (let i = 0; i < this._cells.length; i++) {
-      this._spin(this._cells[i], norm[i]);
+      spins.push(this._spin(this._cells[i], norm[i]));
     }
+    // resolves once every cell has flipped to its target (board is static)
+    return Promise.all(spins);
   }
 
   /* ── one flap step: cur → next ── */
@@ -266,9 +271,14 @@ class SplitFlap extends HTMLElement {
   }
 
   /* ── self-driving modes ── */
-  _stop() { if (this._timer) { clearInterval(this._timer); this._timer = null; } }
+  _stop() {
+    this._cycleStopped = true;
+    if (this._timer) { clearInterval(this._timer); this._timer = null; }
+    if (this._cycleTimer) { clearTimeout(this._cycleTimer); this._cycleTimer = null; }
+  }
   _startMode() {
     this._stop();
+    this._cycleStopped = false;
     const mode = this.getAttribute("mode") || "static";
     if (mode === "clock") {
       const tick = () => {
@@ -281,18 +291,24 @@ class SplitFlap extends HTMLElement {
     } else if (mode === "cycle") {
       const list = (this.getAttribute("values") || "").split(",").map((s) => s.trim()).filter(Boolean);
       if (!list.length) return;
-      const iv = parseInt(this.getAttribute("interval") || "3200", 10);
+      // interval = dwell time the word is held AFTER the flaps settle (static)
+      const dwell = parseInt(this.getAttribute("interval") || "3200", 10);
       let i = 0;
-      this._render(list[0]);
-      this._timer = setInterval(() => {
-        // pick a random next word, never repeating the one currently shown
-        if (list.length > 1) {
-          let next;
-          do { next = Math.floor(Math.random() * list.length); } while (next === i);
-          i = next;
-        }
-        this._render(list[i]);
-      }, iv);
+      const step = async () => {
+        if (this._cycleStopped) return;
+        await this._render(list[i]);          // wait until the board is static
+        if (this._cycleStopped) return;
+        this._cycleTimer = setTimeout(() => {
+          // pick a random next word, never repeating the one currently shown
+          if (list.length > 1) {
+            let next;
+            do { next = Math.floor(Math.random() * list.length); } while (next === i);
+            i = next;
+          }
+          step();
+        }, dwell);
+      };
+      step();
     } else {
       if (this.hasAttribute("value")) this._render(this.getAttribute("value"));
     }
