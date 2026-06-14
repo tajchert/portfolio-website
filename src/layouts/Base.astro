@@ -4,6 +4,7 @@ import '../styles/themes.css';
 import '../styles/keyframes.css';
 import '../styles/base.css';
 import '../styles/portfolio.css';
+import { BLOG_URL } from '../config';
 interface Props { title?: string; description?: string; }
 const {
   title = 'Michał Tajchert — CTO',
@@ -28,6 +29,7 @@ const jsonLd = {
     address: { '@type': 'PostalAddress', addressLocality: 'Warsaw', addressCountry: 'PL' },
     knowsAbout: ['Mobile engineering', 'Android', 'Platform engineering', 'eCommerce', 'Engineering leadership'],
     sameAs: [
+      BLOG_URL,
       'https://linkedin.com/in/mtajchert',
       'https://twitter.com/mtajchert',
       'https://github.com/mtajchert',

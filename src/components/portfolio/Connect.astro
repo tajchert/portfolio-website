@@ -1,6 +1,8 @@
 ---
 import CvActions from './CvActions.astro';
+import { BLOG_URL } from '../../config';
 const links = [
+  { label: 'BLOG', handle: new URL(BLOG_URL).host, href: BLOG_URL },
   { label: 'LINKEDIN', handle: '/in/mtajchert', href: 'https://linkedin.com/in/mtajchert' },
   { label: 'TWITTER / X', handle: '@mtajchert', href: 'https://twitter.com/mtajchert' },
   { label: 'GITHUB', handle: '@mtajchert', href: 'https://github.com/mtajchert' },
