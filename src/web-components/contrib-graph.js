@@ -10,8 +10,14 @@
 
    Attributes
    ──────────
-   seed     integer seed for the placeholder generator (default 20260613)
-   source   initial source: "all" (default) | "gh" | "gl"
+   seed      integer seed for the placeholder generator (default 20260613)
+   source    initial source: "all" (default) | "gh" | "gl"
+   data-src  optional URL of a contributions API returning
+             { days: [{ date, github, gitlab }] } and accepting a "&year=YYYY"
+             param (e.g. commitgraph). When set, the board fetches the current
+             + previous year, merges them into a rolling 53-week window, caches
+             in localStorage (6h), and falls back to the generated placeholder
+             if the request fails. Without it, the placeholder data is used.
    ─────────────────────────────────────────────────────────────── */
 
 const CONTRIB_BG = ['#161616', 'rgba(244,244,242,.24)', 'rgba(244,244,242,.46)', 'rgba(244,244,242,.74)', '#ff5a1e'];
@@ -38,6 +44,32 @@ function generateDays(seed) {
 const dayValue = (day, src) => src === 'gh' ? day.gh : src === 'gl' ? day.gl : day.gh + day.gl;
 const bucket = (c) => !c ? 0 : c <= 2 ? 1 : c <= 5 ? 2 : c <= 9 ? 3 : 4;
 
+// ── Real data helpers (mirror contrib-graph.normalize.ts) ──
+const CG_CACHE_TTL = 6 * 60 * 60 * 1000; // 6h
+
+function indexByDate(days) {
+  const out = {};
+  for (const d of days || []) if (d && d.date) out[d.date] = { gh: d.github || 0, gl: d.gitlab || 0 };
+  return out;
+}
+function buildWindow(byDate, todayISO, weeks) {
+  const today = new Date(todayISO + 'T00:00:00Z');
+  const sunday = new Date(today);
+  sunday.setUTCDate(today.getUTCDate() - today.getUTCDay());
+  const start = new Date(sunday);
+  start.setUTCDate(sunday.getUTCDate() - (weeks - 1) * 7);
+  const iso = (dt) => dt.toISOString().slice(0, 10);
+  const out = [];
+  for (let col = 0; col < weeks; col++) {
+    for (let row = 0; row < 7; row++) {
+      const dt = new Date(start);
+      dt.setUTCDate(start.getUTCDate() + col * 7 + row);
+      out.push(byDate[iso(dt)] || { gh: 0, gl: 0 });
+    }
+  }
+  return out;
+}
+
 class ContribGraph extends HTMLElement {
   static get observedAttributes() { return ['seed', 'source']; }
 
@@ -46,15 +78,69 @@ class ContribGraph extends HTMLElement {
     this._days = [];
     this._src = 'all';
     this._ready = false;
+    this._hasReal = false;
   }
 
   connectedCallback() {
-    const seed = parseInt(this.getAttribute('seed') || '20260613', 10);
-    this._days = generateDays(seed);
     const s = this.getAttribute('source');
     if (s === 'gh' || s === 'gl' || s === 'all') this._src = s;
+
+    const dataSrc = this.getAttribute('data-src');
+    if (dataSrc) {
+      // Real-data mode: render cached/skeleton now, fetch live in the background.
+      const cached = this._readCache(dataSrc);
+      if (cached) { this._days = cached; this._hasReal = true; }
+      else { this._days = buildWindow({}, new Date().toISOString().slice(0, 10), 53); } // empty skeleton
+      this._render();
+      this._ready = true;
+      if (!cached) this._loadReal(dataSrc);
+      return;
+    }
+
+    // Placeholder mode: deterministic generated data.
+    const seed = parseInt(this.getAttribute('seed') || '20260613', 10);
+    this._days = generateDays(seed);
     this._render();
     this._ready = true;
+  }
+
+  /* ── Real data: fetch current + previous year, merge to a rolling window ── */
+  async _loadReal(src) {
+    try {
+      const sep = src.includes('?') ? '&' : '?';
+      const year = new Date().getUTCFullYear();
+      const years = [year, year - 1];
+      const resps = await Promise.all(years.map((y) =>
+        fetch(`${src}${sep}year=${y}`, { headers: { Accept: 'application/json' } })
+          .then((r) => { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+      ));
+      const allDays = resps.flatMap((r) => (r && r.days) || []);
+      if (!allDays.length) throw new Error('no days');
+      const todayISO = new Date().toISOString().slice(0, 10);
+      this._days = buildWindow(indexByDate(allDays), todayISO, 53);
+      this._hasReal = true;
+      this._writeCache(src, this._days);
+      this._render();
+    } catch (e) {
+      // Graceful fallback: only if we have nothing real to show.
+      if (!this._hasReal) {
+        this._days = generateDays(parseInt(this.getAttribute('seed') || '20260613', 10));
+        this._render();
+      }
+    }
+  }
+
+  _readCache(src) {
+    try {
+      const raw = localStorage.getItem('cg:' + src);
+      if (!raw) return null;
+      const { t, days } = JSON.parse(raw);
+      if (!Array.isArray(days) || (Date.now() - t) > CG_CACHE_TTL) return null;
+      return days;
+    } catch (e) { return null; }
+  }
+  _writeCache(src, days) {
+    try { localStorage.setItem('cg:' + src, JSON.stringify({ t: Date.now(), days })); } catch (e) { /* quota/private mode */ }
   }
 
   attributeChangedCallback(name, oldV, newV) {
