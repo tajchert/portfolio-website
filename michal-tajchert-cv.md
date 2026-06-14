@@ -1,7 +1,7 @@
 # Michał Tajchert
 **Chief Technology Officer** · Warsaw, PL · [@tajchert](https://github.com/tajchert)
 
-Technology leader with 13+ years in mobile, platform, q-commerce, eCommerce, fintech, banking, and startup product work. Currently CTO at Lite e-Commerce, leading software, design, and data for Żabka Jush and Delio.
+Technology leader with 15+ years in mobile, platform, q-commerce, eCommerce, fintech, banking, and startup product work. Currently CTO at Lite e-Commerce, leading software, design, and data for Żabka Jush and Delio.
 
 ## Experience
 
@@ -40,6 +40,13 @@ Professional software engineering in a mobile-focused software house, building A
 
 ### Android Developer — BrandCare · Jul 2013 — Oct 2013 · Warsaw
 Early commercial Android development work, including Banamo, a privacy-focused safer community app.
+
+## Education
+
+### SGH Warsaw School of Economics — Master's degree, E-Business · 2015 — 2019
+Featured in Polish tech press for an unconventional approach to the entrance exam: built code that analysed admission-score trends from previous years to prepare.
+
+### Polish-Japanese Academy of Information Technology — Bachelor of Engineering, Computer Science (Mobile Devices) · 2011 — 2015
 
 ## Focus Areas
 

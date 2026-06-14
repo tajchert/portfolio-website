@@ -1,0 +1,41 @@
+---
+const education = [
+  {
+    title: 'SGH Warsaw School of Economics',
+    degree: "Master's degree, E-Business",
+    meta: '2015 — 2019',
+    note: '“Jak polski programista przygotowuje się do egzaminu na SGH? Właśnie tak.” Nietuzinkowy sposób na naukę obrał Michał Tajchert, twórca Kanarka — stworzył kod, który badał trendy z poprzednich lat.',
+  },
+  {
+    title: 'Polish-Japanese Academy of Information Technology',
+    degree: 'Bachelor of Engineering, Computer Science · Mobile Devices',
+    meta: '2011 — 2015',
+  },
+];
+---
+<section id="education" style="margin-bottom:clamp(56px,8vw,96px);scroll-margin-top:64px;">
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap;">
+    <h2 style="font-family:var(--rf-font-mono);font-size:12px;font-weight:700;letter-spacing:.28em;color:#f4f4f2;">04 / EDUCATION</h2>
+    <span style="font-family:var(--rf-font-jp);font-size:13px;color:#6c6c6c;white-space:nowrap;flex-shrink:0;">学歴</span>
+  </div>
+  <div style="height:1px;background:#1a1a1a;margin-bottom:28px;"></div>
+
+  <div class="pf-timeline">
+    {education.map((e, i) => {
+      const last = i === education.length - 1;
+      return (
+        <div class="pf-timeline-entry">
+          <div class="pf-timeline-rail">
+            <span class="pf-timeline-node"></span>
+            {!last && <span class="pf-timeline-line"></span>}
+          </div>
+          <div class="pf-timeline-body">
+            <h3 style="font-size:clamp(17px,2.4vw,20px);font-weight:600;color:#f4f4f2;margin-bottom:5px;">{e.title}</h3>
+            <div style="font-family:var(--rf-font-mono);font-size:12px;letter-spacing:.04em;color:#9a9a92;margin-bottom:10px;">{e.degree} &nbsp;·&nbsp; {e.meta}</div>
+            {e.note && <p style="margin:0;font-size:14px;line-height:1.6;color:#8a8a82;max-width:560px;text-wrap:pretty;">{e.note}</p>}
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</section>
