@@ -285,7 +285,12 @@ class SplitFlap extends HTMLElement {
       let i = 0;
       this._render(list[0]);
       this._timer = setInterval(() => {
-        i = (i + 1) % list.length;
+        // pick a random next word, never repeating the one currently shown
+        if (list.length > 1) {
+          let next;
+          do { next = Math.floor(Math.random() * list.length); } while (next === i);
+          i = next;
+        }
         this._render(list[i]);
       }, iv);
     } else {

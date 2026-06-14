@@ -214,11 +214,14 @@ class ContribGraph extends HTMLElement {
             <button data-src="gh" aria-pressed="${src === 'gh'}" style="${this._chipStyle(src === 'gh')}">GITHUB</button>
             <button data-src="gl" aria-pressed="${src === 'gl'}" style="${this._chipStyle(src === 'gl')}">GITLAB</button>
           </div>
-          <div style="display:flex;align-items:baseline;gap:8px;">
-            ${loading
-              ? sk(58, 26)
-              : `<span style="font-family:'Doto',monospace;font-weight:700;font-size:30px;line-height:1;color:#ff5a1e;text-shadow:0 0 12px rgba(255,90,30,.45);">${st.total}</span>`}
-            <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;color:#7a7a72;">CONTRIBUTIONS</span>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px;">
+            <div style="display:flex;align-items:baseline;gap:8px;">
+              ${loading
+                ? sk(58, 26)
+                : `<span style="font-family:'Doto',monospace;font-weight:700;font-size:30px;line-height:1;color:#ff5a1e;text-shadow:0 0 12px rgba(255,90,30,.45);">${st.total}</span>`}
+              <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;color:#7a7a72;">CONTRIBUTIONS</span>
+            </div>
+            <a href="https://commitgraph.mtajchert.com/?github=tajchert&gitlab=mtajchert" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;color:#7a7a72;text-decoration:none;border-bottom:1px solid #2a2a2a;padding-bottom:1px;">VIEW FULL GRAPH ↗</a>
           </div>
         </div>
 
