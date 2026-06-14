@@ -63,6 +63,23 @@ describe('computeStats', () => {
     const days = [{ gh: 2, gl: 0 }, { gh: 0, gl: 0 }];
     expect(computeStats(days, 'all').current).toBe(0);
   });
+
+  it('counts the current streak back from todayIndex, ignoring future cells', () => {
+    // indices 5,6,7 active; 7 = today; 8,9 are future (zero) and must not count
+    const days = [0, 0, 0, 0, 0, 3, 2, 1, 0, 0].map((n) => ({ gh: n, gl: 0 }));
+    expect(computeStats(days, 'all', 7).current).toBe(3);
+  });
+
+  it('gives a grace day: an empty today does not reset the streak', () => {
+    // today (index 7) is empty, but 5,6 are active → streak counts from yesterday
+    const days = [0, 0, 0, 0, 0, 3, 2, 0, 0, 0].map((n) => ({ gh: n, gl: 0 }));
+    expect(computeStats(days, 'all', 7).current).toBe(2);
+  });
+
+  it('streak is 0 when both today and yesterday are empty', () => {
+    const days = [0, 0, 0, 0, 5, 4, 0, 0, 0, 0].map((n) => ({ gh: n, gl: 0 }));
+    expect(computeStats(days, 'all', 7).current).toBe(0);
+  });
 });
 
 describe('indexByDate', () => {

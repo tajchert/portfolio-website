@@ -168,8 +168,14 @@ class ContribGraph extends HTMLElement {
     const total = days.reduce((a, d) => a + dayValue(d, src), 0);
     let longest = 0, run = 0;
     for (const d of days) { if (dayValue(d, src) > 0) { run++; longest = Math.max(longest, run); } else run = 0; }
+    // current streak: in real-data mode the window's last column is the current
+    // week (post-today cells are future/zero) — count back from today's cell,
+    // with a grace day so an as-yet-empty today doesn't reset the streak.
+    const todayIndex = this.getAttribute('data-src') ? (53 - 1) * 7 + new Date().getUTCDay() : -1;
+    let start = todayIndex >= 0 ? Math.min(todayIndex, days.length - 1) : days.length - 1;
+    if (todayIndex >= 0 && start >= 0 && dayValue(days[start], src) === 0) start--;
     let current = 0;
-    for (let i = days.length - 1; i >= 0; i--) { if (dayValue(days[i], src) > 0) current++; else break; }
+    for (let i = start; i >= 0; i--) { if (dayValue(days[i], src) > 0) current++; else break; }
     let best = 0;
     for (const d of days) best = Math.max(best, dayValue(d, src));
     return { total, longest, current, best };
@@ -216,7 +222,7 @@ class ContribGraph extends HTMLElement {
           </div>
         </div>
 
-        <div style="overflow-x:auto;padding-bottom:6px;">
+        <div data-cg-scroll style="overflow-x:auto;padding-bottom:6px;">
           <div style="display:inline-flex;gap:8px;">
             <div style="display:grid;grid-template-rows:repeat(7,11px);gap:3px;font-family:'Space Mono',monospace;font-size:8px;color:#6c6c6c;align-items:center;">
               <span></span><span>MON</span><span></span><span>WED</span><span></span><span>FRI</span><span></span>
@@ -255,6 +261,11 @@ class ContribGraph extends HTMLElement {
         this._render();
       });
     });
+
+    // Start scrolled to the most recent week (right edge) — matters on narrow
+    // screens where the 53-week grid overflows. No-op when it fits.
+    const scroller = this.querySelector('[data-cg-scroll]');
+    if (scroller) scroller.scrollLeft = scroller.scrollWidth;
   }
 }
 
