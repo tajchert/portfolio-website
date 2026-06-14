@@ -6,9 +6,9 @@ const talks = [
   { n: '23', title: '[ placeholder ] Offline-first apps that feel instant', meta: 'GDG Warsaw · meetup' },
 ];
 ---
-<div id="talks" style="margin-bottom:clamp(56px,8vw,96px);scroll-margin-top:64px;">
+<section id="talks" style="margin-bottom:clamp(56px,8vw,96px);scroll-margin-top:64px;">
   <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap;">
-    <span style="font-family:var(--rf-font-mono);font-size:12px;font-weight:700;letter-spacing:.28em;color:#f4f4f2;">05 / TALKS</span>
+    <h2 style="font-family:var(--rf-font-mono);font-size:12px;font-weight:700;letter-spacing:.28em;color:#f4f4f2;">05 / TALKS</h2>
     <span style="font-family:var(--rf-font-jp);font-size:13px;color:#6c6c6c;white-space:nowrap;flex-shrink:0;">登壇</span>
   </div>
   <div style="font-size:14px;color:#7a7a72;margin-bottom:24px;">Conferences &amp; meetups I've spoken at.</div>
@@ -18,11 +18,11 @@ const talks = [
       <div style={`display:grid;grid-template-columns:auto 1fr auto;gap:clamp(12px,2.5vw,24px);align-items:center;padding:16px clamp(14px,2.5vw,22px);${i === talks.length - 1 ? '' : 'border-bottom:1px solid #161616;'}`}>
         <span style={`font-family:var(--rf-font-display);font-weight:700;font-size:16px;color:${t.accent ? '#ff5a1e' : '#cfcfca'};`}>{t.n}</span>
         <div>
-          <div style="font-size:15px;font-weight:500;color:#f4f4f2;">{t.title}</div>
+          <h3 style="font-size:15px;font-weight:500;color:#f4f4f2;">{t.title}</h3>
           <div style="font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.06em;color:#8a8a82;margin-top:3px;">{t.meta}</div>
         </div>
         <span style="font-family:var(--rf-font-mono);font-size:10px;color:#6c6c6c;">↗</span>
       </div>
     ))}
   </div>
-</div>
+</section>

@@ -8,7 +8,7 @@ const nav = [
   { href: '#connect', label: 'CONNECT' },
 ];
 ---
-<div style="position:sticky;top:0;z-index:50;background:#0b0b0b;border-bottom:1px solid #1a1a1a;">
+<header style="position:sticky;top:0;z-index:50;background:#0b0b0b;border-bottom:1px solid #1a1a1a;">
   <div style="max-width:1080px;margin:0 auto;padding:11px clamp(16px,4vw,40px);display:flex;align-items:center;justify-content:space-between;gap:16px;">
     <a href="#top" style="display:flex;align-items:center;gap:10px;">
       <span style="display:flex;align-items:center;gap:3px;">
@@ -18,12 +18,12 @@ const nav = [
       </span>
       <span style="font-family:var(--rf-font-mono);font-size:11px;font-weight:700;letter-spacing:.22em;color:#f4f4f2;">MT_OS</span>
     </a>
-    <div class="pf-statusbar-nav" style="display:flex;align-items:center;gap:clamp(12px,2.4vw,26px);font-family:var(--rf-font-mono);font-size:10.5px;letter-spacing:.18em;color:#7a7a72;">
+    <nav class="pf-statusbar-nav" aria-label="Sections" style="display:flex;align-items:center;gap:clamp(12px,2.4vw,26px);font-family:var(--rf-font-mono);font-size:10.5px;letter-spacing:.18em;color:#7a7a72;">
       {nav.map((n) => <a href={n.href} class="pf-link-accent">{n.label}</a>)}
-    </div>
+    </nav>
     <div style="display:flex;align-items:center;gap:7px;font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.14em;color:#7a7a72;">
       <Glyph shape="dot" w={7} h={7} accent pulse="rec" />
       <span>ONLINE</span>
     </div>
   </div>
-</div>
+</header>

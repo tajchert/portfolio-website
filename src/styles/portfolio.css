@@ -3,6 +3,11 @@
 /* Anchor reset — the design treats links as plain styled text (no UA blue/underline). */
 a { color: inherit; text-decoration: none; }
 
+/* Heading reset — section titles use real <h2>/<h3> for SEO/semantics but keep
+   their inline visual styles. This strips UA margins/font so the headings look
+   exactly like the styled spans/divs they replaced. */
+h1, h2, h3 { margin: 0; font: inherit; color: inherit; letter-spacing: inherit; }
+
 @keyframes cursor-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
 
 /* hover translations from the prototype's style-hover attribute */

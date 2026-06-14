@@ -9,6 +9,32 @@ const {
   title = 'Michał Tajchert — CTO',
   description = 'Michał Tajchert — Chief Technology Officer. Mobile, platform & eCommerce engineering. Warsaw, PL.',
 } = Astro.props;
+
+// Absolute URLs (Astro.site is set in astro.config.mjs).
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/og.png', Astro.site).href;
+
+// Person / ProfilePage structured data for search engines.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Michał Tajchert',
+    jobTitle: 'Chief Technology Officer',
+    url: canonical,
+    image: ogImage,
+    description,
+    address: { '@type': 'PostalAddress', addressLocality: 'Warsaw', addressCountry: 'PL' },
+    knowsAbout: ['Mobile engineering', 'Android', 'Platform engineering', 'eCommerce', 'Engineering leadership'],
+    sameAs: [
+      'https://linkedin.com/in/mtajchert',
+      'https://twitter.com/mtajchert',
+      'https://github.com/mtajchert',
+      'https://gitlab.com/mtajchert',
+    ],
+  },
+};
 ---
 <html lang="en" data-theme="dark" style="background:#0b0b0b;">
   <head>
@@ -16,10 +42,27 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#0b0b0b" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="profile" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#0b0b0b" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Michał Tajchert" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
   </head>
   <body style="background:#0b0b0b;">
     <slot />

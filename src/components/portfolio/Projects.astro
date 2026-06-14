@@ -22,9 +22,9 @@ const secondary = [
   { name: 'tx-log', desc: '[ placeholder ] Tiny self-hosted analytics, no cookies.', meta: 'GO · SELF-HOST' },
 ];
 ---
-<div id="work" style="margin-bottom:clamp(56px,8vw,96px);scroll-margin-top:64px;">
+<section id="work" style="margin-bottom:clamp(56px,8vw,96px);scroll-margin-top:64px;">
   <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap;">
-    <span style="font-family:var(--rf-font-mono);font-size:12px;font-weight:700;letter-spacing:.28em;color:#f4f4f2;">02 / PROJECTS</span>
+    <h2 style="font-family:var(--rf-font-mono);font-size:12px;font-weight:700;letter-spacing:.28em;color:#f4f4f2;">02 / PROJECTS</h2>
     <span style="font-family:var(--rf-font-jp);font-size:13px;color:#6c6c6c;white-space:nowrap;flex-shrink:0;">制作物</span>
   </div>
   <div style="font-size:14px;color:#7a7a72;margin-bottom:24px;">Indie apps &amp; side projects. <span style="color:#ff8a5a;">★</span> = highlighted.</div>
@@ -38,7 +38,7 @@ const secondary = [
           <span style="font-family:var(--rf-font-mono);font-size:9px;letter-spacing:.2em;color:#0b0b0b;background:#ff4d12;border-radius:999px;padding:4px 10px;font-weight:700;">★ HIGHLIGHT</span>
           <span style="font-family:var(--rf-font-mono);font-size:10px;color:#6c6c6c;">↗</span>
         </div>
-        <div style="font-family:var(--rf-font-display);font-weight:700;font-size:30px;line-height:1;color:#f4f4f2;margin-bottom:12px;">{p.name}</div>
+        <h3 style="font-family:var(--rf-font-display);font-weight:700;font-size:30px;line-height:1;color:#f4f4f2;margin-bottom:12px;">{p.name}</h3>
         <p style="margin:0 0 18px;font-size:14px;line-height:1.6;color:#9a9a92;">{p.desc}</p>
         <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px;">
           {p.tags.map((t) => <Tag size="xs">{t}</Tag>)}
@@ -60,10 +60,10 @@ const secondary = [
           <span style="width:8px;height:8px;border-radius:50%;background:#f4f4f2;box-shadow:0 0 7px rgba(255,255,255,.5);"></span>
           <span style="font-family:var(--rf-font-mono);font-size:10px;color:#6c6c6c;">↗</span>
         </div>
-        <div style="font-family:var(--rf-font-display);font-weight:700;font-size:21px;color:#f4f4f2;margin-bottom:8px;">{p.name}</div>
+        <h3 style="font-family:var(--rf-font-display);font-weight:700;font-size:21px;color:#f4f4f2;margin-bottom:8px;">{p.name}</h3>
         <p style="margin:0 0 12px;font-size:13px;line-height:1.55;color:#8a8a82;">{p.desc}</p>
         <div style="font-family:var(--rf-font-mono);font-size:9px;letter-spacing:.1em;color:#7a7a72;">{p.meta}</div>
       </a>
     ))}
   </div>
-</div>
+</section>
