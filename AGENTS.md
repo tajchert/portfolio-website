@@ -43,21 +43,18 @@ src/
   config.ts               single source of truth (e.g. BLOG_URL)
 michal-tajchert-cv.md      the CV, imported `?raw` at build (single source)
 public/                    favicon.svg, og.png, robots.txt, sitemap.xml
-docs/superpowers/          spec + plans (history)
-docs/reference/            the original design handoff (Portfolio.dc.html)
 ```
 
 ## The design system — read before adding components
 
-`src/styles`, `src/components`, `src/web-components` are **vendored copies** of
-`git@gitlab.com:mtajchert/retrofuturism-web-design-system.git`. We vendor (not a live
-dependency) so Cloudflare needs no auth for the private repo.
+`src/styles`, `src/components`, `src/web-components` are **vendored copies** of a
+private retro-futurism design system. We vendor (not a live dependency) so the
+build needs no auth for the private repo.
 
 - **Do not diverge the vendored copies by editing them in place.** If a shared/reusable
   component needs changes, make them in the design-system repo on a branch, push for
   review, then **copy the files back in**. Page-specific stuff lives in
   `src/components/portfolio/` (never in the DS).
-- The clone used during this project is at `/tmp/rfwds-clone`; recreate with the git URL if gone.
 
 ## Conventions
 
@@ -101,7 +98,7 @@ dependency) so Cloudflare needs no auth for the private repo.
 
 ## Deploy (Cloudflare Pages)
 
-- Project: **`mtajchert-portfolio`** (account `mtajchert@gmail.com`). Build `npm run build`,
+- Project: **`mtajchert-portfolio`**. Build `npm run build`,
   output `dist`, fully static, no env vars/secrets.
 - Deploy: `npx wrangler pages deploy dist --project-name=mtajchert-portfolio --branch=main`
   (direct upload — wrangler is authenticated). Or connect the repo to Pages (GitLab) for

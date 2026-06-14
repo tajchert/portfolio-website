@@ -1,8 +1,8 @@
 # Portfolio — Michał Tajchert
 
 Single-page personal portfolio in the **TE × Nothing** retro-futurism language.
-Built with Astro (static output), styled with a vendored copy of the
-[retrofuturism-web-design-system](https://gitlab.com/mtajchert/retrofuturism-web-design-system).
+Built with Astro (static output), styled with a vendored copy of a private
+retro-futurism design system.
 
 ## Run
 
