@@ -1,0 +1,11 @@
+---
+interface Props { accent?: boolean; size?: 'sm' | 'xs'; }
+const { accent = false, size = 'sm' } = Astro.props;
+const fs = size === 'xs' ? '9px' : '10px';
+const pad = size === 'xs' ? '4px 10px' : '6px 13px';
+const track = size === 'xs' ? '.1em' : '.14em';
+const skin = accent
+  ? 'color:#0b0b0b;background:#ff4d12;border:1px solid #ff4d12;font-weight:700;'
+  : 'color:#cfcfca;border:1px solid #2a2a2a;';
+---
+<span style={`display:inline-block;font-family:var(--rf-font-mono);font-size:${fs};letter-spacing:${track};border-radius:999px;padding:${pad};${skin}`}><slot /></span>
