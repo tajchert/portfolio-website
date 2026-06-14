@@ -1,5 +1,8 @@
 /* Portfolio-page utilities. The page is dark-locked; values match the design. */
 
+/* Anchor reset — the design treats links as plain styled text (no UA blue/underline). */
+a { color: inherit; text-decoration: none; }
+
 @keyframes cursor-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
 
 /* hover translations from the prototype's style-hover attribute */
