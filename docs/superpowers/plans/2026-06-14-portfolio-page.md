@@ -584,7 +584,7 @@ import SectionHeader from '../primitives/SectionHeader.astro';
 import ContribGraph from '../ContribGraph.astro';
 ---
 <div style="max-width:1300px;margin:86px auto 0;">
-  <SectionHeader index="09" title="CONTRIBUTION GRAPH" jp="活動" desc="A dot-matrix contribution heatmap with a source toggle, live total and streak stats. Placeholder data is generated deterministically." />
+  <SectionHeader index="10" title="CONTRIBUTION GRAPH" jp="活動" desc="A dot-matrix contribution heatmap with a source toggle, live total and streak stats. Placeholder data is generated deterministically." />
   <ContribGraph />
 </div>
 ```
