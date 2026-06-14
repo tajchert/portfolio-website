@@ -1,0 +1,15 @@
+---
+interface Props { initials?: string; accent?: boolean; size?: number; }
+const { initials, accent = false, size = 84 } = Astro.props;
+const inner = Math.round(size * 0.857);
+const color = accent ? 'var(--rf-accent)' : '#fff';
+const svg = encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,4a4,4,0,1,1,0,8a4,4,0,0,1,0,-8zM4,21c0,-4.4,3.6,-7,8,-7s8,2.6,8,7z" fill="black"/></svg>`);
+const mask = `url('data:image/svg+xml,${svg}')`;
+---
+<span style={`width:${size}px;height:${size}px;border-radius:16px;background:var(--rf-ink);display:inline-flex;align-items:center;justify-content:center;`}>
+  {initials ? (
+    <span class="rf-display" style={`font-weight:700;font-size:${Math.round(size*0.36)}px;color:var(--rf-surface-2);letter-spacing:.04em;background-image:radial-gradient(rgba(255,255,255,.1) 1px,transparent 1.3px);background-size:6px 6px;`}>{initials}</span>
+  ) : (
+    <span style={`width:${inner}px;height:${inner}px;background-image:radial-gradient(circle, ${color} 0 1.5px, transparent 1.8px);background-size:5px 5px;background-position:center;-webkit-mask-image:${mask};mask-image:${mask};-webkit-mask-size:84%;mask-size:84%;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;`}></span>
+  )}
+</span>

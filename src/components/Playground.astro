@@ -1,0 +1,14 @@
+---
+interface Props {
+  controls: object[];
+  class?: string;
+}
+const { controls, class: className } = Astro.props;
+---
+<rf-playground data-controls={JSON.stringify(controls)} class={className}>
+  <div class="rf-mono" style="font-size:9px;color:var(--rf-ink-faint);margin-bottom:14px;">PLAYGROUND</div>
+  <slot />
+</rf-playground>
+<script>
+  import '../web-components/rf-playground.js';
+</script>

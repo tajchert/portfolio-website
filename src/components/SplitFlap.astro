@@ -1,0 +1,28 @@
+---
+interface Props {
+  value?: string; mode?: 'static' | 'clock' | 'cycle'; values?: string;
+  length?: number; charset?: string; theme?: 'dark' | 'light' | 'orange' | 'paper';
+  size?: number; gap?: number; align?: 'left' | 'center' | 'right'; flapms?: number; interval?: number;
+  id?: string;
+  'data-preview'?: boolean;
+}
+const p = Astro.props;
+---
+<split-flap
+  id={p.id}
+  value={p.value}
+  mode={p.mode}
+  values={p.values}
+  length={p.length}
+  charset={p.charset ?? 'alpha'}
+  theme={p.theme ?? 'dark'}
+  size={p.size}
+  gap={p.gap}
+  align={p.align}
+  flapms={p.flapms}
+  interval={p.interval}
+  data-preview={p['data-preview'] ? '' : undefined}
+></split-flap>
+<script>
+  import '../web-components/split-flap.js';
+</script>

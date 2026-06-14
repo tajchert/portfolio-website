@@ -1,0 +1,14 @@
+---
+interface Props { kind: 'bar' | 'vu'; values: number[]; accentIndex?: number; }
+const { kind, values, accentIndex = -1 } = Astro.props;
+---
+<div style="display:flex;align-items:flex-end;gap:8px;height:104px;">
+  {values.map((v, i) => {
+    const accent = i === accentIndex;
+    const dot = `radial-gradient(circle, ${accent ? 'var(--rf-accent)' : 'var(--rf-ink)'} 0 1.4px, transparent 1.7px)`;
+    if (kind === 'vu') {
+      return <span style={`width:13px;height:90px;background-image:${dot};background-size:6px 6px;background-position:left bottom;border-radius:3px;transform-origin:bottom;animation:vu 1.1s ease-in-out infinite;animation-delay:${(i % 5) * .12}s;`}></span>;
+    }
+    return <span style={`width:16px;height:${v}%;background-image:${dot};background-size:6px 6px;background-position:left bottom;border-radius:3px 3px 0 0;`}></span>;
+  })}
+</div>

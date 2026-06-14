@@ -1,0 +1,8 @@
+---
+interface Props { value: string; width?: number; height?: number; accent?: boolean; }
+const { value, width = 150, height = 70, accent = false } = Astro.props;
+const color = accent ? 'var(--rf-accent)' : 'var(--rf-ink)';
+const svg = encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 60"><text x="70" y="47" font-family="Helvetica,Arial,sans-serif" font-size="54" font-weight="700" text-anchor="middle" fill="black">${value}</text></svg>`);
+const mask = `url('data:image/svg+xml,${svg}')`;
+---
+<span style={`display:block;width:${width}px;height:${height}px;background-image:radial-gradient(circle, ${color} 0 1.5px, transparent 1.8px);background-size:5px 5px;background-position:center;-webkit-mask-image:${mask};mask-image:${mask};-webkit-mask-size:contain;mask-size:contain;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;`}></span>

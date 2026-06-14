@@ -1,0 +1,20 @@
+---
+interface Props { name: 'notify' | 'call' | 'charge' | 'timer' | 'volume' | 'record' | 'alert' | 'silent'; caption?: string; }
+const { name, caption } = Astro.props;
+const labelColor = name === 'record' ? 'var(--rf-accent-soft)' : name === 'silent' ? 'var(--rf-ink-dim)' : 'var(--rf-ink)';
+const bar = (w: number, h: number, extra = '') => `width:${w}px;height:${h}px;border-radius:${Math.round(w/1.4)}px;background:var(--rf-led);box-shadow:var(--rf-glow-white);${extra}`;
+---
+<div style="border:1px solid var(--rf-border);border-radius:14px;background:var(--rf-surface-2);padding:18px 14px 15px;display:flex;flex-direction:column;align-items:center;">
+  <div style="height:62px;display:flex;align-items:flex-end;justify-content:center;gap:5px;">
+    {name === 'notify' && <span style={bar(10, 52, 'animation:glyph-pulse-soft 2.6s ease-in-out infinite;')}></span>}
+    {name === 'call' && [30,46,52,38].map((h,i)=>(<span style={bar(7,h,`animation:glyph-sweep 1.3s ease-in-out infinite;animation-delay:${i*0.15}s;`)}></span>))}
+    {name === 'charge' && <span style="position:relative;width:16px;height:54px;border-radius:7px;background:var(--rf-border);overflow:hidden;"><span style="position:absolute;left:0;bottom:0;width:100%;border-radius:7px;background:var(--rf-led);box-shadow:var(--rf-glow-white);animation:charge-fill 2.6s ease-in-out infinite;"></span></span>}
+    {name === 'timer' && <span style="position:relative;width:16px;height:54px;border-radius:7px;background:var(--rf-border);overflow:hidden;"><span style="position:absolute;left:0;bottom:0;width:100%;border-radius:7px;background:var(--rf-led);box-shadow:var(--rf-glow-white);animation:drain 3s linear infinite;"></span></span>}
+    {name === 'volume' && [0,.18,.36,.12,.3].map((d)=>(<span style={bar(6,46,`transform-origin:bottom;animation:vu 1s ease-in-out infinite;animation-delay:${d}s;`)}></span>))}
+    {name === 'record' && <span style="width:18px;height:18px;border-radius:50%;background:var(--rf-accent);box-shadow:0 0 16px rgba(255,77,18,.85);animation:rec-blink 1.6s steps(1) infinite;"></span>}
+    {name === 'alert' && [0,.35].map((d)=>(<span style={bar(8,52,`animation:rec-blink .7s steps(1) infinite;animation-delay:${d}s;`)}></span>))}
+    {name === 'silent' && [30,44,36].map((h)=>(<span style={`width:8px;height:${h}px;border-radius:5px;border:1.5px solid var(--rf-border-2);box-sizing:border-box;`}></span>))}
+  </div>
+  <div class="rf-mono" style={`font-size:10px;letter-spacing:.16em;color:${labelColor};margin-top:15px;`}>{name.toUpperCase()}</div>
+  {caption && <div class="rf-mono" style="font-size:8px;letter-spacing:.03em;text-transform:none;color:var(--rf-ink-faint);margin-top:5px;text-align:center;">{caption}</div>}
+</div>

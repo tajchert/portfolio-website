@@ -1,0 +1,20 @@
+---
+// A single glyph LED — dot or bar — used to compose status strips.
+interface Props {
+  shape?: 'dot' | 'bar';
+  w?: number;          // width px (bar) or diameter (dot)
+  h?: number;          // height px
+  accent?: boolean;    // orange instead of led white/black
+  pulse?: 'none' | 'soft' | 'rec' | 'sweep';
+  opacity?: number;
+}
+const { shape = 'dot', w = 7, h = 7, accent = false, pulse = 'none', opacity = 1 } = Astro.props;
+const radius = shape === 'dot' ? '50%' : '4px';
+const bg = accent ? 'var(--rf-accent)' : 'var(--rf-led)';
+const glow = accent ? 'var(--rf-glow-orange)' : 'var(--rf-glow-white)';
+const anim = {
+  none: '', soft: 'animation:glyph-pulse-soft 2.6s ease-in-out infinite;',
+  rec: 'animation:rec-blink 1.8s steps(1) infinite;', sweep: 'animation:glyph-sweep 1.5s ease-in-out infinite;',
+}[pulse];
+---
+<span style={`display:inline-block;width:${w}px;height:${h}px;border-radius:${radius};background:${bg};box-shadow:${glow};opacity:${opacity};${anim}`}></span>

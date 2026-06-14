@@ -1,0 +1,17 @@
+---
+interface Props { items: { value: string; label: string; accent?: boolean }[]; }
+const { items } = Astro.props;
+---
+<div data-theme="dark" style="border-radius:14px;background:var(--rf-plate-bg);padding:16px 16px 15px;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1.3px);background-size:9px 9px;">
+  <div style="display:flex;justify-content:space-between;text-align:center;">
+    {items.map((it, i) => (
+      <>
+        {i > 0 && <div style="width:1px;background:#222;"></div>}
+        <div>
+          <div class="rf-display" style={`font-weight:700;font-size:34px;line-height:1;color:${it.accent ? 'var(--rf-accent-hi)' : '#fff'};text-shadow:${it.accent ? '0 0 12px rgba(255,90,30,.5)' : '0 0 12px rgba(255,255,255,.35)'};`}>{it.value}</div>
+          <div class="rf-mono" style="font-size:8px;letter-spacing:.16em;color:#7a7a7a;margin-top:8px;">{it.label}</div>
+        </div>
+      </>
+    ))}
+  </div>
+</div>

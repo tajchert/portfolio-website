@@ -1,0 +1,9 @@
+---
+interface Props { index: string; title: string; jp: string; desc?: string; }
+const { index, title, jp, desc } = Astro.props;
+---
+<div style="display:flex;align-items:baseline;gap:14px;margin-bottom:6px;">
+  <span class="rf-mono" style="font-size:12px;font-weight:700;letter-spacing:.28em;color:var(--rf-ink);">{index} / {title}</span>
+  <span class="rf-jp" style="font-size:13px;color:var(--rf-ink-faint);">{jp}</span>
+</div>
+{desc && <div style="font-size:15px;color:var(--rf-ink-dim);max-width:640px;margin-bottom:36px;letter-spacing:-.01em;">{desc}</div>}

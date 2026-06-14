@@ -1,0 +1,23 @@
+---
+interface Props { variant?: 'dark' | 'paper'; title?: string; meta?: string; dotted?: boolean; }
+const { variant = 'paper', title, meta, dotted = false } = Astro.props;
+const isDark = variant === 'dark';
+const bg = isDark ? '#000' : 'var(--rf-surface-2)';
+const ink = isDark ? '#fff' : 'var(--rf-ink)';
+const border = isDark ? 'none' : '1px solid var(--rf-border)';
+const dim = isDark ? '#6c6c6c' : 'var(--rf-ink-faint)';
+const dot = dotted
+  ? `background-image:radial-gradient(${isDark ? 'rgba(255,255,255,.05)' : 'rgba(0,0,0,.07)'} 1px,transparent 1.4px);background-size:18px 18px;`
+  : '';
+---
+<div style={`flex:1;min-width:320px;background:${bg};border:${border};border-radius:18px;padding:30px;color:${ink};${dot}`}>
+  {title && (
+    <div style={`display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid ${isDark ? '#1c1c1c' : 'var(--rf-hairline)'};padding-bottom:16px;margin-bottom:24px;`}>
+      <span class="rf-display" style={`font-weight:700;font-size:20px;color:${ink};`}>{title}</span>
+      {meta && <span class="rf-mono" style={`font-size:9px;letter-spacing:.16em;color:${dim};`}>{meta}</span>}
+    </div>
+  )}
+  <div data-theme={isDark ? 'dark' : 'light'} style="display:contents;">
+    <slot />
+  </div>
+</div>
