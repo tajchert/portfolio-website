@@ -1,4 +1,15 @@
 ---
+// Condensed one-line-per-company summary shown when the section is collapsed
+// (the default). The full timeline below carries the real detail.
+const summary = [
+  { org: 'Lite e-Commerce', role: 'CTO', years: '2025 — NOW', dot: '#ff4d12' },
+  { org: 'MODIVO SA', role: 'Engineering Manager', years: '2021 — 2024', dot: '#cfcfca' },
+  { org: 'BlueSoft', role: 'Mobile / Android Lead', years: '2017 — 2021', dot: '#cfcfca' },
+  { org: 'DXC Technology', role: 'Tech BizDev Manager', years: '2019 — 2020', dot: '#cfcfca' },
+  { org: 'Startups', role: 'Founder / Android Lead', years: '2015 — 2017', dot: '#cfcfca' },
+  { org: 'Polidea & earlier', role: 'Android Engineer', years: '2013 — 2015', dot: '#3a3a3a' },
+];
+
 const roles = [
   {
     title: 'Chief Technology Officer',
@@ -93,68 +104,91 @@ const roles = [
 ];
 ---
 <section id="log" style="margin-bottom:clamp(56px,8vw,96px);scroll-margin-top:64px;">
-  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap;">
-    <h2 style="font-family:var(--rf-font-mono);font-size:12px;font-weight:700;letter-spacing:.28em;color:#f4f4f2;">03 / EXPERIENCE</h2>
-    <span style="font-family:var(--rf-font-jp);font-size:13px;color:#6c6c6c;white-space:nowrap;flex-shrink:0;">経歴</span>
-  </div>
-  <div style="height:1px;background:#1a1a1a;margin-bottom:28px;"></div>
+  <experience-toggle>
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:10px;">
+      <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;">
+        <h2 style="font-family:var(--rf-font-mono);font-size:12px;font-weight:700;letter-spacing:.28em;color:#7a7a72;">03 / EXPERIENCE</h2>
+        <span style="font-family:var(--rf-font-jp);font-size:13px;color:#6c6c6c;white-space:nowrap;flex-shrink:0;">経歴</span>
+      </div>
+      <button type="button" data-act="toggle" class="pf-exp-toggle" aria-expanded="false" aria-controls="exp-full">[ + ] EXPAND</button>
+    </div>
+    <div style="height:1px;background:#161616;margin-bottom:18px;"></div>
+    <p style="margin:0 0 18px;font-size:14px;line-height:1.55;color:#6c6c6c;max-width:580px;text-wrap:pretty;">The "where". Soft signal — the projects above are the real story. Here's the résumé version if you want it.</p>
 
-  <div class="pf-timeline">
-    {roles.map((r, i) => {
-      const last = i === roles.length - 1;
-      const nodeClass = `pf-timeline-node${r.accentNode ? ' pf-timeline-node--accent' : ''}${r.dim ? ' pf-timeline-node--dim' : ''}`;
-      return (
-        <div class="pf-timeline-entry">
-          <div class="pf-timeline-rail">
-            <span class={nodeClass}></span>
-            {!last && <span class="pf-timeline-line"></span>}
-          </div>
-          <div class="pf-timeline-body">
-            <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:5px;">
-              <h3 style="font-size:clamp(17px,2.4vw,20px);font-weight:600;color:#f4f4f2;">{r.title}</h3>
-              {r.badge && (
-                <span style={`font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.1em;border-radius:999px;padding:2px 9px;${r.badgeAccent ? 'color:#ff8a5a;border:1px solid #5a2a18;' : 'color:#cfcfca;border:1px solid #2a2a2a;'}`}>{r.badge}</span>
-              )}
-            </div>
-            <div style="font-family:var(--rf-font-mono);font-size:12px;letter-spacing:.04em;color:#9a9a92;margin-bottom:10px;">{r.company} &nbsp;·&nbsp; {r.meta}</div>
-            <p style="margin:0;font-size:14px;line-height:1.6;color:#8a8a82;max-width:560px;text-wrap:pretty;">{r.body}</p>
-            {r.positions.length > 0 && (
-              <div class="pf-subtimeline">
-                {r.positions.map((p, j) => (
-                  <div class="pf-subentry">
-                    <div class="pf-subrail">
-                      <span class="pf-subnode"></span>
-                      {j < r.positions.length - 1 && <span class="pf-subline"></span>}
-                    </div>
-                    <div class="pf-subbody">
-                      <div style="font-size:clamp(15px,2vw,17px);font-weight:600;color:#f4f4f2;margin-bottom:3px;">{p.title}</div>
-                      <div style={`font-family:var(--rf-font-mono);font-size:11px;letter-spacing:.04em;color:#9a9a92;${p.body ? 'margin-bottom:8px;' : ''}`}>{p.meta}</div>
-                      {p.body && <p style="margin:0;font-size:13.5px;line-height:1.6;color:#8a8a82;max-width:540px;text-wrap:pretty;">{p.body}</p>}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-            {r.details.length > 0 && (
-              <div class="pf-subtimeline">
-                {r.details.map((d, j) => (
-                  <div class="pf-subentry">
-                    <div class="pf-subrail">
-                      <span class="pf-subnode pf-subnode--dim"></span>
-                      {j < r.details.length - 1 && <span class="pf-subline"></span>}
-                    </div>
-                    <div class="pf-subbody">
-                      <p style="margin:0;font-size:13.5px;line-height:1.6;color:#8a8a82;max-width:540px;text-wrap:pretty;">
-                        {typeof d === 'string' ? d : (<><strong style="font-weight:700;color:#f4f4f2;">{d.name}</strong> — {d.body}</>)}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+    <!-- collapsed: soft one-line-per-company summary (default) -->
+    <div data-region="summary" style="border:1px solid #161616;border-radius:12px;background:#080808;overflow:hidden;">
+      {summary.map((e) => (
+        <div style="display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:13px 16px;border-top:1px solid #141414;">
+          <span style={`width:7px;height:7px;border-radius:50%;background:${e.dot};flex-shrink:0;`}></span>
+          <div style="min-width:0;"><span style="font-size:14px;font-weight:600;color:#cfcfca;">{e.org}</span> <span style="font-size:13px;color:#7a7a72;">· {e.role}</span></div>
+          <span style="font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.08em;color:#6c6c6c;white-space:nowrap;">{e.years}</span>
         </div>
-      );
-    })}
-  </div>
+      ))}
+    </div>
+
+    <!-- expanded: full timeline -->
+    <div data-region="full" id="exp-full" aria-hidden="true">
+      <div class="pf-timeline">
+        {roles.map((r, i) => {
+          const last = i === roles.length - 1;
+          const nodeClass = `pf-timeline-node${r.accentNode ? ' pf-timeline-node--accent' : ''}${r.dim ? ' pf-timeline-node--dim' : ''}`;
+          return (
+            <div class="pf-timeline-entry">
+              <div class="pf-timeline-rail">
+                <span class={nodeClass}></span>
+                {!last && <span class="pf-timeline-line"></span>}
+              </div>
+              <div class="pf-timeline-body">
+                <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:5px;">
+                  <h3 style="font-size:clamp(17px,2.4vw,20px);font-weight:600;color:#f4f4f2;">{r.title}</h3>
+                  {r.badge && (
+                    <span style={`font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.1em;border-radius:999px;padding:2px 9px;${r.badgeAccent ? 'color:#ff8a5a;border:1px solid #5a2a18;' : 'color:#cfcfca;border:1px solid #2a2a2a;'}`}>{r.badge}</span>
+                  )}
+                </div>
+                <div style="font-family:var(--rf-font-mono);font-size:12px;letter-spacing:.04em;color:#9a9a92;margin-bottom:10px;">{r.company} &nbsp;·&nbsp; {r.meta}</div>
+                <p style="margin:0;font-size:14px;line-height:1.6;color:#8a8a82;max-width:560px;text-wrap:pretty;">{r.body}</p>
+                {r.positions.length > 0 && (
+                  <div class="pf-subtimeline">
+                    {r.positions.map((p, j) => (
+                      <div class="pf-subentry">
+                        <div class="pf-subrail">
+                          <span class="pf-subnode"></span>
+                          {j < r.positions.length - 1 && <span class="pf-subline"></span>}
+                        </div>
+                        <div class="pf-subbody">
+                          <div style="font-size:clamp(15px,2vw,17px);font-weight:600;color:#f4f4f2;margin-bottom:3px;">{p.title}</div>
+                          <div style={`font-family:var(--rf-font-mono);font-size:11px;letter-spacing:.04em;color:#9a9a92;${p.body ? 'margin-bottom:8px;' : ''}`}>{p.meta}</div>
+                          {p.body && <p style="margin:0;font-size:13.5px;line-height:1.6;color:#8a8a82;max-width:540px;text-wrap:pretty;">{p.body}</p>}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {r.details.length > 0 && (
+                  <div class="pf-subtimeline">
+                    {r.details.map((d, j) => (
+                      <div class="pf-subentry">
+                        <div class="pf-subrail">
+                          <span class="pf-subnode pf-subnode--dim"></span>
+                          {j < r.details.length - 1 && <span class="pf-subline"></span>}
+                        </div>
+                        <div class="pf-subbody">
+                          <p style="margin:0;font-size:13.5px;line-height:1.6;color:#8a8a82;max-width:540px;text-wrap:pretty;">
+                            {typeof d === 'string' ? d : (<><strong style="font-weight:700;color:#f4f4f2;">{d.name}</strong> — {d.body}</>)}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </experience-toggle>
 </section>
+<script>
+  import '../../web-components/experience-toggle.js';
+</script>
