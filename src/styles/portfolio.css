@@ -56,6 +56,22 @@ experience-toggle[data-expanded] [data-region="summary"] { display: none; }
 }
 .pf-exp-toggle:hover { border-color: var(--rf-accent); color: #f4f4f2; }
 
+.pf-exp-summary-row {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color .15s ease;
+}
+.pf-exp-summary-row:hover { background: #0d0d0d; }
+.pf-exp-summary-row:focus-visible {
+  outline: 1px solid var(--rf-accent);
+  outline-offset: -1px;
+}
+
 contrib-graph {
   display: block;
   max-width: 100%;

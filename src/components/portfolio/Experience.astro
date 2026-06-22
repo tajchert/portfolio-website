@@ -116,11 +116,11 @@ const roles = [
     <!-- collapsed: soft one-line-per-company summary (default) -->
     <div data-region="summary" style="border:1px solid #161616;border-radius:12px;background:#080808;overflow:hidden;">
       {summary.map((e) => (
-        <div style="display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:13px 16px;border-top:1px solid #141414;">
+        <button type="button" data-act="expand" aria-controls="exp-full" aria-label={`Expand full experience timeline for ${e.org}`} class="pf-exp-summary-row" style="display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:13px 16px;border-top:1px solid #141414;">
           <span style={`width:7px;height:7px;border-radius:50%;background:${e.dot};flex-shrink:0;`}></span>
           <div style="min-width:0;"><span style="font-size:14px;font-weight:600;color:#cfcfca;">{e.org}</span> <span style="font-size:13px;color:#7a7a72;">· {e.role}</span></div>
           <span style="font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.08em;color:#6c6c6c;white-space:nowrap;">{e.years}</span>
-        </div>
+        </button>
       ))}
     </div>
 

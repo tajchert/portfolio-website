@@ -10,6 +10,7 @@
 
    Expected light-DOM children:
      button[data-act="toggle"]   — the EXPAND / COLLAPSE control
+     [data-act="expand"]         — optional summary rows that expand only
      [data-region="summary"]     — condensed one-line summary
      [data-region="full"]        — full timeline
 
@@ -24,6 +25,7 @@ const LABEL_EXPANDED = '[ − ] COLLAPSE';
 class ExperienceToggle extends HTMLElement {
   connectedCallback() {
     this._btn = this.querySelector('button[data-act="toggle"]');
+    this._expanders = Array.from(this.querySelectorAll('[data-act="expand"]'));
     this._full = this.querySelector('[data-region="full"]');
     // Collapsed by default unless the author opted in.
     this._expanded = this.hasAttribute('data-expanded');
@@ -32,14 +34,25 @@ class ExperienceToggle extends HTMLElement {
       this._onClick = () => this.toggle();
       this._btn.addEventListener('click', this._onClick);
     }
+    this._onExpand = () => this.expand();
+    for (const expander of this._expanders) expander.addEventListener('click', this._onExpand);
   }
 
   disconnectedCallback() {
     if (this._btn && this._onClick) this._btn.removeEventListener('click', this._onClick);
+    if (this._expanders && this._onExpand) {
+      for (const expander of this._expanders) expander.removeEventListener('click', this._onExpand);
+    }
   }
 
   toggle() {
     this._expanded = !this._expanded;
+    this._sync();
+  }
+
+  expand() {
+    if (this._expanded) return;
+    this._expanded = true;
     this._sync();
   }
 
