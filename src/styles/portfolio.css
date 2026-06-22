@@ -84,11 +84,6 @@ contrib-graph [data-cg-scroll] {
   contain: paint;
 }
 
-/* ── Responsive ─────────────────────────────────────────────────────────
-   The split-flap role display has two sizes: full on tablet/desktop, compact
-   on phones so the longest word fits without horizontal scroll. */
-.pf-flap-sm { display: none; }
-
 /* Experience timeline. The spine is one continuous, gap-free vertical line:
    spacing lives in the body column (.pf-timeline-body padding-bottom), and the
    rail's line is flex:1 so it stretches the full row height and meets the next
@@ -190,8 +185,4 @@ contrib-graph [data-cg-scroll] {
      scroll, so drop it and keep the wordmark + ONLINE indicator.
      !important overrides the element's inline display:flex. */
   .pf-statusbar-nav { display: none !important; }
-
-  /* swap the big split-flap for the compact one */
-  .pf-flap-lg { display: none; }
-  .pf-flap-sm { display: inline-block; }
 }
