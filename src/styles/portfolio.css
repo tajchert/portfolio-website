@@ -108,6 +108,7 @@ contrib-graph [data-cg-scroll] {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 4px;
 }
 
 .pf-timeline-line {
