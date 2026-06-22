@@ -14,6 +14,13 @@ h1, h2, h3 { margin: 0; font: inherit; color: inherit; letter-spacing: inherit; 
 .pf-link-accent { transition: color .15s ease; }
 .pf-link-accent:hover { color: var(--rf-accent); }
 
+.pf-link-hover-underline {
+  color: inherit;
+  text-decoration: none;
+  text-underline-offset: .18em;
+}
+.pf-link-hover-underline:hover { text-decoration: underline; }
+
 .pf-card-accent { transition: border-color .15s ease; }
 .pf-card-accent:hover { border-color: var(--rf-accent); }
 

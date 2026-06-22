@@ -11,8 +11,6 @@ const talks = [
     <h2 style="font-family:var(--rf-font-mono);font-size:12px;font-weight:700;letter-spacing:.28em;color:#f4f4f2;">06 / COMMUNITY</h2>
     <span style="font-family:var(--rf-font-jp);font-size:13px;color:#6c6c6c;white-space:nowrap;flex-shrink:0;">コミュニティ</span>
   </div>
-  <div style="font-size:14px;color:#7a7a72;margin-bottom:24px;">Events, workshops, mentoring, and open-source education.</div>
-
   <div style="border:1px solid #1f1f1f;border-radius:14px;background:#0a0a0a;overflow:hidden;">
     {talks.map((t, i) => (
       <div style={`display:grid;grid-template-columns:76px 1fr auto;gap:clamp(12px,2.5vw,24px);align-items:center;padding:16px clamp(14px,2.5vw,22px);${i === talks.length - 1 ? '' : 'border-bottom:1px solid #161616;'}`}>

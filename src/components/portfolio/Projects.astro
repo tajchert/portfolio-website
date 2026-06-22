@@ -1,7 +1,7 @@
 ---
 import Tag from './Tag.astro';
 
-// ── Tier 1: shipped & highlighted ──────────────────────────────────────────
+// ── Tier 1: shipped ────────────────────────────────────────────────────────
 const highlighted = [
   {
     name: 'WaitingDots',
@@ -19,16 +19,16 @@ const highlighted = [
   },
 ];
 
-// ── Tier 2: also shipped ────────────────────────────────────────────────────
+// ── Tier 2: also ───────────────────────────────────────────────────────────
 const shipped = [
   { name: 'BusWear', href: 'https://github.com/tajchert/BusWear', desc: 'EventBus support for Android Wear and mobile apps with synchronized event buses.', stack: 'JAVA · ANDROID WEAR · OSS' },
   { name: 'ExceptionWear', href: 'https://github.com/tajchert/ExceptionWear', desc: 'Android Wear exception-handling library for making wearable app failures easier to manage.', stack: 'JAVA · ANDROID WEAR · OSS' },
   { name: 'RuntimePermissionWorkshop', href: 'https://github.com/tajchert/RuntimePermissionWorkshop', desc: 'Workshop material for teaching Android runtime permissions through practical examples.', stack: 'JAVA · WORKSHOP · ANDROID' },
 ];
 
-// ── Tier 3: experiments · POC · n=1 ─────────────────────────────────────────
-// Half-built, weekend-built, one-user builds. Data-driven so adding more is
-// just appending here. TODO: replace these placeholders with real entries.
+// ── Tier 3: experiments · POC ──────────────────────────────────────────────
+// Data-driven so adding more is just appending here.
+// TODO: replace these placeholders with real entries.
 const experiments = [
   { name: 'your-experiment', tag: 'POC', note: 'One-line description of a small build — replace me.', href: '' },
   { name: 'n=1 build', tag: 'n=1', note: 'A tool with exactly one user — me — and that was reason enough.', href: '' },
@@ -39,11 +39,10 @@ const experiments = [
     <span style="font-family:var(--rf-font-mono);font-size:13px;font-weight:700;letter-spacing:.28em;color:var(--rf-accent);">02 / PROJECTS</span>
     <span style="font-family:var(--rf-font-jp);font-size:13px;color:#6c6c6c;white-space:nowrap;flex-shrink:0;">制作物</span>
   </div>
-  <h2 style="margin:0 0 16px;font-family:var(--rf-font-display);font-weight:600;font-size:clamp(32px,5.4vw,56px);line-height:.93;letter-spacing:.01em;color:#f4f4f2;text-transform:lowercase;">the things i build</h2>
-  <p style="margin:0 0 30px;font-size:clamp(15px,2vw,18px);line-height:1.5;color:#9a9a92;max-width:640px;text-wrap:pretty;">This is the core. Shipped products, real tools, and a long tail of experiments — some with thousands of users, some with exactly one. Building is the throughline, not the org chart. <span style="color:#ff8a5a;">★</span> = highlighted.</p>
+  <h2 style="margin:0 0 30px;font-family:var(--rf-font-display);font-weight:600;font-size:clamp(32px,5.4vw,56px);line-height:.93;letter-spacing:.01em;color:#f4f4f2;">Pixel Pushing</h2>
 
-  <!-- Tier 1: shipped & highlighted -->
-  <div style="font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.2em;color:#7a7a72;margin-bottom:14px;">SHIPPED &amp; HIGHLIGHTED · 主要</div>
+  <!-- Tier 1: shipped -->
+  <div style="font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.2em;color:#7a7a72;margin-bottom:14px;">SHIPPED · 主要</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;margin-bottom:16px;">
     {highlighted.map((p) => (
       <a href={p.href} target="_blank" rel="noopener" class="pf-card-accent" style="border:1px solid #242424;border-radius:14px;background:#0d0d0d;padding:22px;display:block;position:relative;overflow:hidden;">
@@ -66,8 +65,8 @@ const experiments = [
     ))}
   </div>
 
-  <!-- Tier 2: also shipped -->
-  <div style="font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.2em;color:#7a7a72;margin:34px 0 14px;">ALSO SHIPPED · 出荷済み</div>
+  <!-- Tier 2: also -->
+  <div style="font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.2em;color:#7a7a72;margin:34px 0 14px;">ALSO · 出荷済み</div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px;margin-bottom:40px;">
     {shipped.map((p) => (
       <a href={p.href} target="_blank" rel="noopener" class="pf-card-soft" style="border:1px solid #1f1f1f;border-radius:12px;background:#0a0a0a;padding:18px;display:block;">
@@ -82,11 +81,10 @@ const experiments = [
     ))}
   </div>
 
-  <!-- Tier 3: experiments · POC · n=1 -->
+  <!-- Tier 3: experiments · POC -->
   <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 8px;">
-    <span style="font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.2em;color:#ff8a5a;">EXPERIMENTS · POC · n=1 · 実験</span>
+    <span style="font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.2em;color:#ff8a5a;">EXPERIMENTS · POC · 実験</span>
   </div>
-  <p style="margin:0 0 18px;font-size:13.5px;line-height:1.55;color:#8a8a82;max-width:600px;text-wrap:pretty;">Half-built, weekend-built, one-user built. A few have exactly one user — me — and that's reason enough. The drive to build doesn't wait for scale or sign-off.</p>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,248px),1fr));gap:10px;">
     {experiments.map((x) => {
       const Wrapper = x.href ? 'a' : 'div';
