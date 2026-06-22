@@ -1,20 +1,10 @@
 ---
-import Glyph from '../Glyph.astro';
 import Tag from './Tag.astro';
 ---
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(28px,4vw,52px);align-items:center;margin-bottom:clamp(64px,9vw,104px);">
 
   <!-- identity -->
   <div>
-    <div style="display:flex;align-items:center;gap:11px;margin-bottom:22px;">
-      <span style="display:flex;align-items:center;gap:3px;">
-        <Glyph shape="dot" w={6} h={6} pulse="soft" />
-        <Glyph shape="bar" w={22} h={6} />
-        <Glyph shape="bar" w={10} h={6} />
-        <Glyph shape="dot" w={6} h={6} accent />
-      </span>
-      <span style="font-family:var(--rf-font-mono);font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;color:#7a7a72;">portfolio · 自己紹介</span>
-    </div>
     <h1 style="margin:0;font-family:var(--rf-font-display),'Space Mono',monospace;font-weight:600;font-size:clamp(46px,9.5vw,92px);line-height:.86;letter-spacing:.01em;color:#f4f4f2;">Michał<br>Tajchert</h1>
     <div style="margin-top:22px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
       <span style="font-size:clamp(17px,2.4vw,21px);font-weight:500;letter-spacing:-.01em;color:#f4f4f2;">Chief Technology Officer</span>
