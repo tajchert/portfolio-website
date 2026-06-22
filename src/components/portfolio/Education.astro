@@ -5,7 +5,7 @@ const education = [
     degree: "Master's degree, E-Business",
     meta: '2015 — 2019',
     sub: [
-      { title: 'Toronto Metropolitan University, Canada', meta: 'Feb 2017 — Jul 2017' },
+      { title: 'Toronto Metropolitan University, Canada', meta: 'Feb 2017 — Jul 2017', body: 'Full scholarship at The DMZ startup accelerator.' },
     ],
   },
   {
@@ -45,7 +45,8 @@ const education = [
                     </div>
                     <div class="pf-subbody">
                       <div style="font-size:clamp(15px,2vw,17px);font-weight:600;color:#f4f4f2;margin-bottom:3px;">{s.title}</div>
-                      <div style="font-family:var(--rf-font-mono);font-size:11px;letter-spacing:.04em;color:#9a9a92;">{s.meta}</div>
+                      <div style={`font-family:var(--rf-font-mono);font-size:11px;letter-spacing:.04em;color:#9a9a92;${s.body ? 'margin-bottom:7px;' : ''}`}>{s.meta}</div>
+                      {s.body && <p style="margin:0;font-size:13px;line-height:1.55;color:#8a8a82;max-width:520px;text-wrap:pretty;">{s.body}</p>}
                     </div>
                   </div>
                 ))}

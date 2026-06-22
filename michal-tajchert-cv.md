@@ -11,21 +11,30 @@ Leading software, design, and data for Żabka Jush and Delio. Responsible for en
 ### Engineering Manager — MODIVO SA · May 2022 — Dec 2024
 Managed mobile-related teams in a fast-growing eCommerce group. Responsible for MODIVO and eObuwie apps across 19 markets, the Backend-For-Frontend layer supporting them, and cooperation with product, business, and platform teams.
 
+- Coordinated 4 teams with ~25 mobile developers.
+- Helped move mobile development from outsourcing toward in-house delivery.
+
 ### Mobile Technology Leader — MODIVO SA · Nov 2021 — May 2022
 Set mobile engineering direction during a fast-growth phase. Focused on architecture, team practices, delivery standards, and scaling mobile development across brands.
 
 ### Mobile Technology Leader — BlueSoft · Oct 2020 — Oct 2021 · Warsaw
 Led mobile technology and the Android team for Raiffeisen Ukraine. Also supported other mobile initiatives inside BlueSoft, helping teams choose architecture, tooling, and delivery practices.
 
+- Worked with 4 feature teams and ~14 senior developers.
+- Used Jetpack Compose, SwiftUI, shared modules, and design-system work.
+
 ### Technology Business Development Manager — DXC Technology · Feb 2019 — Sep 2020 · Warsaw
 Worked across technology ownership, software management, architecture, and client-facing business development.
 
-- Technology Product Owner / Software Manager / Architect for BLIK in the United Arab Emirates, working with a senior mobile team under tight delivery constraints.
-- Business Development Manager for the IKO project at PKO BP, staying close to one of the strongest mobile banking products in the region.
-- Client-facing technology partner for offers, discovery, and stack recommendations.
+- Technology Product Owner / Software Manager / Architect for eDirham G3 in the United Arab Emirates, based on BLIK/OTP flows.
+- Supported IKO modularization for a 5M+ client banking app.
+- Helped build mobile capability from 2 to 25+ developers.
 
 ### Android Team Lead @ Raiffeisen — BlueSoft · Jul 2017 — Jan 2019 · Warsaw
 Led a six-person Android team building a new banking application on a modern mobile stack. Supported the previous Mobilny Portfel app while preparing the new version and coordinating the merge path with the BNP mobile team.
+
+- Delivered the new banking app in 7 months.
+- Introduced Kotlin, DI, and multi-module architecture in banking.
 
 ### Startups — Brand24, Yawn, Icelytics, 12Hours · Jun 2015 — Jun 2017 · Warsaw / Toronto
 Built and led early-stage product work across mobile apps, analytics, and consumer products.
@@ -45,6 +54,7 @@ Early commercial Android development work, including Banamo, a privacy-focused s
 
 ### SGH Warsaw School of Economics — Master's degree, E-Business · 2015 — 2019
 - Toronto Metropolitan University, Canada · Feb 2017 — Jul 2017
+- Full scholarship at The DMZ startup accelerator.
 
 ### Polish-Japanese Academy of Information Technology — Bachelor of Engineering, Computer Science (Mobile Devices) · 2011 — 2015
 
@@ -59,6 +69,15 @@ Engineering leadership · Mobile platforms · Android · Kotlin · eCommerce · 
 - **BusWear** — EventBus support for Android Wear and mobile apps. Java · Android Wear · Apache-2.0.
 - **ExceptionWear** — Android Wear exception-handling library.
 - **RuntimePermissionWorkshop** — Practical workshop material for Android runtime permissions.
+
+## Selected Products & Community
+
+- **Kanarek.app** — Air-quality monitoring app with 200k+ active users and 4.8/5 rating.
+- **12Hours** — Calendar-as-analog-clock Android widget; 100k users in three days after Reddit traction.
+- **SGH Daily** — University app with timetable, news, and cancelled-class alerts; 10k+ users.
+- **Warsaw Hacks** — 1st prize for a civic identity-verification concept using one-time codes.
+- **GDG Warszawa** — Organizer and public speaker, 2013–2019.
+- **Google Launchpad Week** — Startup mentor for mobile and technical direction.
 
 ## Connect
 

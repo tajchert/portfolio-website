@@ -4,6 +4,13 @@ import Tag from './Tag.astro';
 // ── Tier 1: shipped ────────────────────────────────────────────────────────
 const highlighted = [
   {
+    name: 'Kanarek.app',
+    href: 'https://kanarek.app',
+    desc: 'Air-quality monitoring app aggregating Polish smog data across mobile platforms.',
+    tags: ['MOBILE', 'DATA', 'AIR QUALITY'],
+    stats: [{ v: '200k+', l: 'active users' }, { v: '4.8/5', l: 'rating' }],
+  },
+  {
     name: 'WaitingDots',
     href: 'https://github.com/tajchert/WaitingDots',
     desc: 'Android loading animation library built around bouncing dots, shipped as a small reusable UI component.',
@@ -28,10 +35,10 @@ const shipped = [
 
 // ── Tier 3: experiments · POC ──────────────────────────────────────────────
 // Data-driven so adding more is just appending here.
-// TODO: replace these placeholders with real entries.
 const experiments = [
-  { name: 'your-experiment', tag: 'POC', note: 'One-line description of a small build — replace me.', href: '' },
-  { name: 'n=1 build', tag: 'n=1', note: 'A tool with exactly one user — me — and that was reason enough.', href: '' },
+  { name: '12Hours', tag: 'APP', note: 'Calendar-as-analog-clock widget; 100k users in three days after Reddit traction.', href: '' },
+  { name: 'SGH Daily', tag: 'STUDENTS', note: 'University app with timetable, news, and cancelled-class alerts; 10k+ users.', href: '' },
+  { name: 'Warsaw Hacks', tag: '1ST PRIZE', note: 'Civic identity-verification concept using one-time codes for public employees.', href: 'https://spidersweb.pl/bizblog/siup-weryfikacja-tozsamosci/' },
 ];
 ---
 <section id="work" style="margin-bottom:clamp(56px,8vw,96px);scroll-margin-top:64px;">
