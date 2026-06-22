@@ -1,0 +1,27 @@
+---
+// Leadership principles, shown as a numbered card grid between About and
+// Projects. Auto-fit grid uses minmax(min(100%,…)) so it never overflows on
+// narrow viewports.
+const principles = [
+  'Small teams with clear ownership.',
+  'Architecture kept close to product decisions.',
+  'Leaders trusted to lead — with hands-on support when needed.',
+  'Shipping cadence, quality & business context over process theater.',
+  'AI & data used where value can be measured — not as decoration.',
+];
+---
+<section style="margin-bottom:clamp(56px,8vw,96px);">
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap;">
+    <h2 style="font-family:var(--rf-font-mono);font-size:12px;font-weight:700;letter-spacing:.28em;color:#f4f4f2;">02 / HOW</h2>
+    <span style="font-family:var(--rf-font-jp);font-size:13px;color:#6c6c6c;white-space:nowrap;flex-shrink:0;">指針</span>
+  </div>
+  <div style="height:1px;background:#1a1a1a;margin-bottom:28px;"></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,248px),1fr));gap:12px;">
+    {principles.map((p, i) => (
+      <div class="pf-card-faint" style="border:1px solid #1f1f1f;border-radius:13px;background:#0a0a0a;padding:20px;display:flex;flex-direction:column;gap:13px;">
+        <span style="font-family:var(--rf-font-display);font-weight:700;font-size:22px;line-height:1;color:#ff5a1e;text-shadow:0 0 10px rgba(255,90,30,.35);">{String(i + 1).padStart(2, '0')}</span>
+        <div style="font-size:14.5px;line-height:1.5;color:#cfcfca;text-wrap:pretty;">{p}</div>
+      </div>
+    ))}
+  </div>
+</section>

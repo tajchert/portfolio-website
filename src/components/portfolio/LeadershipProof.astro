@@ -1,0 +1,33 @@
+---
+import Glyph from '../Glyph.astro';
+
+// A scannable proof band between the hero and the role flap. Literal hex
+// (dark-locked, matches the mock) per the portfolio convention. The hair
+// spaces ( ) around the arrow keep "2 → 25" visually tight.
+const rows = [
+  { stat: 'CTO', accent: false, label: 'Software, design & data', org: 'Lite e-Commerce' },
+  { stat: '25+', accent: true, label: 'Mobile developers across 4 teams', org: 'MODIVO' },
+  { stat: '19', accent: false, label: 'Markets with shipped mobile products', org: 'eCommerce' },
+  { stat: '2 → 25', accent: false, label: 'Built mobile capability from the ground up', org: 'DXC' },
+  { stat: '200k+', accent: true, label: 'Users on consumer products at 4.8★', org: 'shipped' },
+];
+---
+<section aria-label="Scale" style="margin-bottom:clamp(56px,8vw,96px);border:1px solid #1f1f1f;border-radius:16px;background:#0a0a0a;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.5);">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px clamp(18px,3vw,24px);border-bottom:1px solid #161616;">
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+      <span style="font-family:var(--rf-font-mono);font-size:11px;font-weight:700;letter-spacing:.26em;color:#ff4d12;">SCALE</span>
+      <span style="font-family:var(--rf-font-jp);font-size:13px;color:#6c6c6c;white-space:nowrap;flex-shrink:0;">規模</span>
+    </div>
+    <span style="display:flex;align-items:center;gap:3px;">
+      <Glyph shape="dot" w={6} h={6} />
+      <Glyph shape="bar" w={24} h={6} />
+      <Glyph shape="dot" w={6} h={6} accent />
+    </span>
+  </div>
+  {rows.map((r, i) => (
+    <div style={`display:grid;grid-template-columns:clamp(72px,13vw,104px) 1fr;gap:clamp(14px,2.5vw,24px);align-items:center;padding:17px clamp(18px,3vw,24px);${i === 0 ? '' : 'border-top:1px solid #141414;'}`}>
+      <span style={`font-family:var(--rf-font-display);font-weight:700;font-size:clamp(20px,3vw,26px);line-height:1;white-space:nowrap;${r.accent ? 'color:#ff5a1e;text-shadow:0 0 12px rgba(255,90,30,.4);' : 'color:#f4f4f2;text-shadow:0 0 12px rgba(255,255,255,.28);'}`}>{r.stat}</span>
+      <div style="min-width:0;"><span style="font-size:clamp(14px,1.9vw,16px);font-weight:500;color:#f4f4f2;">{r.label}</span><span style="font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.06em;color:#8a8a82;"> · {r.org}</span></div>
+    </div>
+  ))}
+</section>
