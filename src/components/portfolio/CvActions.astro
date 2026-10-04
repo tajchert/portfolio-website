@@ -1,23 +1,35 @@
 ---
-// CV file cards with Markdown COPY / SAVE actions and a PDF download. The markdown is the single
-// canonical file at the repo root, imported raw at build time and passed
-// to the cv-actions web component as base64 (UTF-8 safe).
+// One CV card with PDF as the primary download and Markdown COPY / SAVE actions.
+// Markdown is canonical; the supplied PDF is a formatted snapshot of the CV.
 import cvRaw from '../../../michal-tajchert-cv.md?raw';
+import Glyph from '../Glyph.astro';
 const cvB64 = Buffer.from(cvRaw, 'utf-8').toString('base64');
 ---
-<cv-actions
+<portfolio-cv-actions
   data-filename="michal-tajchert-cv.md"
-  data-label="CURRICULUM VITAE · 履歴書"
   data-md={cvB64}
-></cv-actions>
-<div style="border:1px solid #242424;border-radius:14px;background:#0d0d0d;padding:16px 18px 16px 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:12px;">
-  <span style="font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.1em;color:#ff8a5a;border:1px solid #3a241c;border-radius:6px;padding:5px 7px;">PDF</span>
-  <div style="flex:1;min-width:160px;">
-    <div style="font-family:var(--rf-font-mono);font-size:9px;letter-spacing:.18em;color:#7a7a72;margin-bottom:6px;">CURRICULUM VITAE · PDF</div>
-    <div style="font-family:var(--rf-font-mono);font-size:12px;letter-spacing:.04em;color:#cfcfca;overflow-wrap:anywhere;">Michal_Tajchert_CV.pdf</div>
+>
+  <div class="pf-cv-card">
+    <div class="pf-cv-identity">
+      <span style="display:flex;align-items:center;gap:3px;flex-shrink:0;">
+        <Glyph shape="dot" w={6} h={6} />
+        <Glyph shape="bar" w={22} h={6} />
+        <Glyph shape="dot" w={6} h={6} accent />
+      </span>
+      <div style="min-width:0;">
+        <div style="font-family:var(--rf-font-mono);font-size:9px;letter-spacing:.18em;color:#7a7a72;margin-bottom:6px;">CURRICULUM VITAE · 履歴書</div>
+        <div style="font-family:var(--rf-font-mono);font-size:12px;letter-spacing:.04em;color:#cfcfca;overflow-wrap:anywhere;">michal-tajchert-cv</div>
+      </div>
+    </div>
+    <div class="pf-cv-options">
+      <a href="/michal-tajchert-cv.pdf" download="Michal_Tajchert_CV.pdf" aria-label="Download CV as PDF" class="pf-cv-action pf-cv-action--primary">↓ DOWNLOAD PDF</a>
+      <div class="pf-cv-secondary">
+        <button data-act="copy" aria-label="Copy CV markdown to clipboard" class="pf-cv-action" disabled>COPY</button>
+        <button data-act="save" aria-label="Download CV markdown file" class="pf-cv-action" disabled>↓ MD</button>
+      </div>
+    </div>
   </div>
-  <a href="/michal-tajchert-cv.pdf" download="Michal_Tajchert_CV.pdf" aria-label="Download CV as PDF" class="pf-card-soft" style="font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.14em;color:#cfcfca;border:1px solid #2a2a2a;background:#0a0a0a;border-radius:999px;padding:9px 18px;font-weight:700;white-space:nowrap;">↓ DOWNLOAD PDF</a>
-</div>
+</portfolio-cv-actions>
 <script>
-  import '../../web-components/cv-actions.js';
+  import './CvActions.client.js';
 </script>
