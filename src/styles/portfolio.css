@@ -243,9 +243,9 @@ contrib-graph [data-cg-scroll] {
 portfolio-contrib-graph { display: block; }
 
 .pf-roll { display: inline-block; height: 1em; line-height: 1; overflow: hidden; vertical-align: top; text-shadow: none; }
-.pf-roll > span, .pf-roll-strip > span { display: block; height: 1em; }
-.pf-roll-strip { animation: pf-roll .9s cubic-bezier(.2, .8, .2, 1) both; }
-@keyframes pf-roll { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+.pf-roll > span:not(.pf-roll-strip), .pf-roll-strip > span { display: block; height: 1em; }
+.pf-roll-strip { display: block; animation: pf-roll .9s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes pf-roll { from { transform: translateY(0); } to { transform: translateY(-1em); } }
 
 /* glow via filter on the whole number: per-digit text-shadow would be clipped by .pf-roll */
 .pf-tick-glow { filter: drop-shadow(0 0 6px color-mix(in srgb, currentColor 45%, transparent)); animation: pf-tick-glow 1.3s ease-out; }
