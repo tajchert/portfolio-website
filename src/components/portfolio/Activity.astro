@@ -1,5 +1,5 @@
 ---
-import ContribGraph from '../ContribGraph.astro';
+import ContribGraphLive from './ContribGraphLive.astro';
 ---
 <section id="activity" style="margin-bottom:clamp(56px,8vw,96px);scroll-margin-top:64px;">
   <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:8px;flex-wrap:wrap;">
@@ -7,6 +7,6 @@ import ContribGraph from '../ContribGraph.astro';
   </div>
   <div style="font-size:14px;color:#7a7a72;margin-bottom:22px;">Last 12 months · GitHub + GitLab.</div>
   <div style="max-width:100%;overflow-x:hidden;">
-    <ContribGraph src="https://commitgraph.mtajchert.com/api/contributions?github=tajchert&gitlab=mtajchert" />
+    <ContribGraphLive src="https://commitgraph.mtajchert.com/api/contributions?github=tajchert&gitlab=mtajchert" />
   </div>
 </section>

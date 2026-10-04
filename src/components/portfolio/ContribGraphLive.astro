@@ -1,0 +1,12 @@
+---
+// The vendored contribution graph plus a one-off "+1 today" tick (see ContribGraphLive.client.js).
+interface Props {
+  /** Contributions API URL (e.g. commitgraph). */
+  src: string;
+}
+const { src } = Astro.props;
+---
+<portfolio-contrib-graph data-src={src}></portfolio-contrib-graph>
+<script>
+  import './ContribGraphLive.client.js';
+</script>
