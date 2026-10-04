@@ -182,7 +182,7 @@ contrib-graph [data-cg-scroll] {
 
 @media (max-width: 600px) {
   /* In-page anchor nav doesn't fit a phone status bar; the page is a single
-     scroll, so drop it and keep the wordmark + ONLINE indicator.
+     scroll, so drop it and keep the wordmark.
      !important overrides the element's inline display:flex. */
   .pf-statusbar-nav { display: none !important; }
 }

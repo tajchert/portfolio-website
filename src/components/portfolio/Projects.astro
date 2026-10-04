@@ -11,29 +11,60 @@ const highlighted = [
     stats: [{ v: '200k+', l: 'active users' }, { v: '4.8/5', l: 'rating' }],
   },
   {
-    name: 'WaitingDots',
-    href: 'https://github.com/tajchert/WaitingDots',
-    desc: 'Android loading animation library built around bouncing dots, shipped as a small reusable UI component.',
+    name: 'Paczkofast',
+    href: 'https://github.com/tajchert/paczkofast',
+    desc: 'A focused, unofficial Android app for tracking InPost parcels and opening pickup lockers.',
     tags: ['KOTLIN', 'ANDROID', 'OSS'],
-    stats: [{ v: '700+', l: '★' }, { v: 'MIT', l: 'license' }],
+    stats: [],
   },
   {
-    name: 'Nammu',
-    href: 'https://github.com/tajchert/Nammu',
-    desc: 'Android runtime-permission helper for cleaner permission checks, callbacks, monitoring, and Android M-era app flows.',
-    tags: ['KOTLIN', 'ANDROID', 'PERMISSIONS'],
-    stats: [{ v: '700+', l: '★' }, { v: 'MIT', l: 'license' }],
+    name: 'Suuntool',
+    href: 'https://github.com/tajchert/suuntool',
+    desc: 'An unofficial CLI and MCP interface for reading and writing personal fitness data through the Suunto cloud API.',
+    tags: ['CLI', 'MCP', 'FITNESS'],
+    stats: [],
+  },
+  {
+    name: 'Smallibre',
+    href: 'https://github.com/tajchert/smallibre',
+    desc: 'A small, native macOS ebook manager with library organization, EPUB personalization, and reader transfers.',
+    tags: ['SWIFT', 'MACOS', 'EBOOKS'],
+    stats: [],
   },
 ];
 
-// ── Tier 2: also ───────────────────────────────────────────────────────────
-const shipped = [
+// Own tools and open-source work stay distinct from contributions to other projects.
+const webTools = [
+  { name: 'PhoneFramer', href: 'https://screenshot.mtajchert.com/', desc: 'Turn screenshots into device mockups with iPhone, Samsung Galaxy, and Pixel frames, right in the browser.', stack: 'WEB · SCREENSHOTS · DEVICE MOCKUPS' },
+  { name: 'Catch up HN', href: 'https://catch-hn.com/', desc: 'Catch up on the best Hacker News stories from any time period.', stack: 'WEB · HACKER NEWS · READING' },
+  { name: 'Summary Slide', href: 'https://summary-slide.mtajchert.com/', desc: 'Create an Apple-style summary slide that brings key features together in one visual.', stack: 'WEB · PRESENTATIONS · DESIGN' },
+];
+
+const openSource = [
+  { name: 'wFirma MCP', href: 'https://github.com/tajchert/wfirma-mcp', desc: 'An unofficial, local MCP server for read-only access to wFirma.pl data, focused on invoicing.', stack: 'PYTHON · MCP · INVOICING' },
+  { name: 'harq', href: 'https://github.com/tajchert/harq', desc: 'A command-line HAR viewer for exploring, filtering, and searching large HTTP archive files.', stack: 'RUST · CLI · DEVELOPER TOOLS' },
   { name: 'BusWear', href: 'https://github.com/tajchert/BusWear', desc: 'EventBus support for Android Wear and mobile apps with synchronized event buses.', stack: 'JAVA · ANDROID WEAR · OSS' },
   { name: 'ExceptionWear', href: 'https://github.com/tajchert/ExceptionWear', desc: 'Android Wear exception-handling library for making wearable app failures easier to manage.', stack: 'JAVA · ANDROID WEAR · OSS' },
   { name: 'RuntimePermissionWorkshop', href: 'https://github.com/tajchert/RuntimePermissionWorkshop', desc: 'Workshop material for teaching Android runtime permissions through practical examples.', stack: 'JAVA · WORKSHOP · ANDROID' },
+  { name: 'Nammu', href: 'https://github.com/tajchert/Nammu', desc: 'Android runtime-permission helper for cleaner permission checks, callbacks, monitoring, and Android M-era app flows.', stack: 'KOTLIN · ANDROID · PERMISSIONS' },
+  { name: 'WaitingDots', href: 'https://github.com/tajchert/WaitingDots', desc: 'Android loading animation library built around bouncing dots, shipped as a small reusable UI component.', stack: 'KOTLIN · ANDROID · OSS' },
 ];
 
-// ── Tier 3: experiments · POC ──────────────────────────────────────────────
+const contributions = [
+  { name: 'we-promise-sure', href: 'https://github.com/tajchert/we-promise-sure', desc: 'Added a finance Sankey diagram and mapping between ecommerce purchases and their returns.', stack: 'CONTRIBUTION · FINANCE · FEATURES' },
+  { name: 'OpenTrailPaper', href: 'https://github.com/RaemondBW/OpenTrailPaper', desc: 'Added the full GPX import and routing features to this open-source e-ink bike computer.', stack: 'CONTRIBUTION · GPX · ROUTING' },
+  { name: 'DoNotNotify', href: 'https://github.com/anujja/DoNotNotify/pull/7', desc: 'Optimized the Compose UI with stable list keys, content types, and memoized lookups and rule matching.', stack: 'CONTRIBUTION · ANDROID · PERFORMANCE' },
+  { name: 'TRMNL Firmware', href: 'https://github.com/usetrmnl/trmnl-firmware/pull/245', desc: 'Fixed image downloads behind proxies and CDNs, handling missing Content-Length, chunked transfers, and compression.', stack: 'CONTRIBUTION · FIRMWARE · HTTP' },
+  { name: 'Spotifast', href: 'https://github.com/crmne/spotifast', desc: 'Contributed a small UI fix to this native Spotify client.', stack: 'CONTRIBUTION · UI FIX' },
+];
+
+const projectGroups = [
+  { title: 'MY WEB TOOLS', projects: webTools },
+  { title: 'MY OPEN SOURCE', projects: openSource },
+  { title: 'OPEN-SOURCE CONTRIBUTIONS', projects: contributions },
+];
+
+// ── Experiments · POC ──────────────────────────────────────────────────────
 // Data-driven so adding more is just appending here.
 const experiments = [
   { name: '12Hours', tag: 'APP', note: 'Calendar-as-analog-clock widget; 100k users in three days after Reddit traction.', href: '' },
@@ -50,7 +81,7 @@ const experiments = [
 
   <!-- Tier 1: shipped -->
   <div style="font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.2em;color:#7a7a72;margin-bottom:14px;">SHIPPED · 主要</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;margin-bottom:16px;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px;margin-bottom:16px;">
     {highlighted.map((p) => (
       <a href={p.href} target="_blank" rel="noopener" class="pf-card-accent" style="border:1px solid #242424;border-radius:14px;background:#0d0d0d;padding:22px;display:block;position:relative;overflow:hidden;">
         <div style="position:absolute;top:0;right:0;width:120px;height:120px;background-image:radial-gradient(rgba(255,90,30,.18) 1px,transparent 1.4px);background-size:8px 8px;pointer-events:none;"></div>
@@ -63,32 +94,35 @@ const experiments = [
         <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px;">
           {p.tags.map((t) => <Tag size="xs">{t}</Tag>)}
         </div>
-        <div style="display:flex;gap:16px;font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.06em;color:#7a7a72;">
+        {p.stats.length > 0 && <div style="display:flex;gap:16px;font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.06em;color:#7a7a72;">
           {p.stats.map((s) => (
             <span><span style="color:#f4f4f2;font-family:var(--rf-font-display);font-weight:700;font-size:13px;">{s.v}</span> {s.l}</span>
           ))}
-        </div>
+        </div>}
       </a>
     ))}
   </div>
 
-  <!-- Tier 2: also -->
-  <div style="font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.2em;color:#7a7a72;margin:34px 0 14px;">ALSO · 出荷済み</div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px;margin-bottom:40px;">
-    {shipped.map((p) => (
-      <a href={p.href} target="_blank" rel="noopener" class="pf-card-soft" style="border:1px solid #1f1f1f;border-radius:12px;background:#0a0a0a;padding:18px;display:block;">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-          <span style="width:8px;height:8px;border-radius:50%;background:#f4f4f2;box-shadow:0 0 7px rgba(255,255,255,.5);"></span>
-          <span style="font-family:var(--rf-font-mono);font-size:10px;color:#6c6c6c;">↗</span>
-        </div>
-        <h3 style="font-family:var(--rf-font-display);font-weight:700;font-size:21px;color:#f4f4f2;margin-bottom:8px;overflow-wrap:anywhere;">{p.name}</h3>
-        <p style="margin:0 0 12px;font-size:13px;line-height:1.55;color:#8a8a82;text-wrap:pretty;">{p.desc}</p>
-        <div style="font-family:var(--rf-font-mono);font-size:9px;letter-spacing:.1em;color:#7a7a72;">{p.stack}</div>
-      </a>
-    ))}
-  </div>
+  {projectGroups.map((group) => (
+    <div style="margin:34px 0 40px;">
+      <h3 style="font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.2em;color:#7a7a72;margin-bottom:14px;">{group.title}</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px;">
+        {group.projects.map((p) => (
+          <a href={p.href} target="_blank" rel="noopener" class="pf-card-soft" style="border:1px solid #1f1f1f;border-radius:12px;background:#0a0a0a;padding:18px;display:block;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+              <span style="width:8px;height:8px;border-radius:50%;background:#f4f4f2;box-shadow:0 0 7px rgba(255,255,255,.5);"></span>
+              <span style="font-family:var(--rf-font-mono);font-size:10px;color:#6c6c6c;">↗</span>
+            </div>
+            <h4 style="margin:0 0 8px;font-family:var(--rf-font-display);font-weight:700;font-size:21px;line-height:1.2;letter-spacing:inherit;color:#f4f4f2;overflow-wrap:anywhere;">{p.name}</h4>
+            <p style="margin:0 0 12px;font-size:13px;line-height:1.55;color:#8a8a82;text-wrap:pretty;">{p.desc}</p>
+            <div style="font-family:var(--rf-font-mono);font-size:9px;letter-spacing:.1em;color:#7a7a72;">{p.stack}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  ))}
 
-  <!-- Tier 3: experiments · POC -->
+  <!-- Experiments · POC -->
   <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 8px;">
     <span style="font-family:var(--rf-font-mono);font-size:10px;letter-spacing:.2em;color:#ff8a5a;">EXPERIMENTS · POC · 実験</span>
   </div>
