@@ -1,0 +1,33 @@
+# Cloudflare Pages response headers. https://developers.cloudflare.com/pages/configuration/headers/
+# script-src carries the hash of the inline theme script (same in index.html and 404.html).
+# npm run build fails and prints the new hash if that script changes.
+
+/*
+  Content-Security-Policy: default-src 'none'; script-src 'sha256-tRyxae4x7KcZ+93Dvui0haLRzuxEllgZfbJPum31HMo='; style-src 'unsafe-inline'; img-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/
+  Cache-Control: public, max-age=300, must-revalidate
+
+/michal-tajchert-cv.pdf
+  ! Content-Security-Policy
+  Cache-Control: public, max-age=3600
+
+/michal-tajchert-cv.md
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+/favicon.ico
+  Cache-Control: public, max-age=2592000
+
+/favicon.svg
+  Cache-Control: public, max-age=2592000
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=2592000
+
+/og.png
+  Cache-Control: public, max-age=2592000
