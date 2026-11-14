@@ -1,18 +1,10 @@
 {
   "name": "portfolio-page",
+  "version": "0.2.0",
+  "private": true,
   "type": "module",
-  "version": "0.1.0",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "test": "vitest run"
-  },
-  "dependencies": {
-    "astro": "^4.15.0"
-  },
-  "devDependencies": {
-    "typescript": "^5.5.0",
-    "vitest": "^2.0.0"
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/build.mjs && python3 -m http.server 4321 --bind 127.0.0.1 --directory dist"
   }
 }
