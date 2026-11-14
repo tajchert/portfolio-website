@@ -10,11 +10,11 @@ Technical leaders, founders, recruiters, engineering peers, and collaborators ev
 
 ## Product Purpose
 
-This is a single-page personal portfolio for Michal Tajchert. It exists to present a concise professional identity, highlight senior engineering and leadership experience, expose current activity, and make CV/contact actions straightforward. Success means visitors understand the profile within seconds and can verify depth through experience, projects, code activity, writing, and links.
+This is a single-page personal portfolio for Michal Tajchert. It presents a concise professional identity, engineering and leadership experience, projects, community activity, and direct CV/contact links. Success means visitors understand the profile quickly and can verify experience through the listed work, writing, and links.
 
 ## Brand Personality
 
-Precise, technical, retro-futurist. The voice should feel confident and focused, with minimal marketing language and enough texture to feel personal.
+Precise and technical. The voice should feel confident and focused, with minimal marketing language and enough personality to feel personal.
 
 ## Anti-references
 
@@ -24,10 +24,10 @@ Avoid generic SaaS landing pages, bright gradient hero layouts, soft pastel pers
 
 Show evidence before claims.
 Keep the page compact, scannable, and purposeful.
-Let the TE x Nothing visual language carry personality while the copy stays restrained.
-Preserve the dark, engineered interface character across every section.
+Use a simple, text-first link-list presentation with restrained copy.
+Support both light and dark themes consistently across the page.
 Prefer real professional content over placeholders or decorative filler.
 
 ## Accessibility & Inclusion
 
-Keep semantic landmarks, heading hierarchy, keyboard-accessible links and actions, visible focus states, and responsive layouts without horizontal overflow. Respect reduced-motion preferences where animation is used, and maintain readable contrast in the dark-only theme.
+Keep semantic landmarks, heading hierarchy, keyboard-accessible links and actions, visible focus states, and responsive layouts without horizontal overflow. Maintain readable contrast in both light and dark themes.
