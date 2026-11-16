@@ -21,6 +21,7 @@ michal-tajchert-cv.md    CV Markdown source
 ```sh
 npm run build
 npm run preview
+npm run graph
 ```
 
 The build copies `site/` to `dist/` and copies the root CV Markdown into `dist/`. Preview builds first, then serves the result at `http://127.0.0.1:4321`.
@@ -33,6 +34,7 @@ The build copies `site/` to `dist/` and copies the root CV Markdown into `dist/`
 - Preserve semantic HTML, the canonical URL, description, Open Graph and Twitter metadata, and `ProfilePage` / `Person` JSON-LD in `site/index.html`.
 - Keep the layout free of horizontal overflow from 320 px upward.
 - The inline script hash in `site/_headers` must match scripts in both HTML files. If the build reports a new hash, update the `script-src` hash there and run `npm run build` again.
+- The commit graph in the intro is a static inline SVG between the `commit-graph` markers in `site/index.html`. `npm run graph` refetches the data from commitgraph.mtajchert.com and rewrites that block; run it before a deploy to refresh the graph, and do not edit the block by hand. The build itself stays offline.
 - Regenerate the favicon files and `site/og.png` using the instructions in `tools/README.md`.
 - `michal-tajchert-cv.md` at the repository root is the Markdown CV source; the build copies it into `dist/`. The PDF served by the site is `site/michal-tajchert-cv.pdf`.
 
